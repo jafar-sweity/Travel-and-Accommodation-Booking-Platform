@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using TravelAndAccommodationBookingPlatform.Core.Enums;
 
 namespace TravelAndAccommodationBookingPlatform.Core.Models
 {
@@ -9,5 +10,4 @@ namespace TravelAndAccommodationBookingPlatform.Core.Models
         int PageSize,
         OrderDirection SortDirection = OrderDirection.Ascending
     );
-
 }
