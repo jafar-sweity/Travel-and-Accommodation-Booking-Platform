@@ -3,7 +3,7 @@ using TravelAndAccommodationBookingPlatform.Core.Entities;
 
 namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories
 {
-    interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         Task<City?> GetByIdAsync(Guid id);
         Task<City> AddAsync(T entity);
