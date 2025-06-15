@@ -1,4 +1,6 @@
-﻿namespace TravelAndAccommodationBookingPlatform.Core.Entities
+﻿using TravelAndAccommodationBookingPlatform.Core.Enums;
+
+namespace TravelAndAccommodationBookingPlatform.Core.Entities
 {
     public class Booking : EntityBase
     {

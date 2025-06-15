@@ -2,7 +2,7 @@
 
 namespace TravelAndAccommodationBookingPlatform.Core.Entities
 {
-    public class Hotel : EntityBase, IAuditableEntityAdd commentMore actions
+    public class Hotel : EntityBase, IAuditableEntity
     {
         public Owner Owner { get; set; }
         public City City { get; set; }

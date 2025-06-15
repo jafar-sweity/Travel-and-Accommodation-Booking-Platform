@@ -1,6 +1,6 @@
 ﻿namespace TravelAndAccommodationBookingPlatform.Core.Entities
 {
-    public class Review : EntityBase, IAuditableEntityAdd commentMore actions
+    public class Review : EntityBase, IAuditableEntity
     {
         public Guid GuestId { get; set; }
         public User Guest { get; set; }
