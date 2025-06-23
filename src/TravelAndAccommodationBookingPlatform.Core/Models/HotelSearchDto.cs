@@ -9,6 +9,5 @@
         public string? CityName { get; init; }
         public double ReviewsRating { get; set; }
         public decimal NightlyRate { get; set; }
-        public string? Description { get; set; }
-    }
+        public string? Description { get; set; }    }
 }

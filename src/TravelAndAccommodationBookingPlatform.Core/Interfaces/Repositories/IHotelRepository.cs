@@ -10,7 +10,5 @@ namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories
         Task<PaginatedResult<HotelManagementDto>> GetHotelsForManagementPageAsync(PaginatedQuery<Hotel> query);
         Task<bool> ExistsByPredicateAsync(Expression<Func<Hotel, bool>> predicate);
         Task<PaginatedResult<HotelSearchDto>> FindHotelsAsync(PaginatedQuery<Hotel> query);
-
-
     }
 }
