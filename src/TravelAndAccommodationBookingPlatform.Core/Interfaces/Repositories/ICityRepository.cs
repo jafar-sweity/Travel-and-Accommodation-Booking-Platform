@@ -7,7 +7,5 @@ namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories
     {
         Task<IEnumerable<City>> GetTopMostVisitedCitiesAsync(int count);
         Task<PaginatedResult<CityAdminView>> GetCitiesForAdminAsync(PaginatedQuery<City> PaginatedQuery);
-
-
     }
 }
