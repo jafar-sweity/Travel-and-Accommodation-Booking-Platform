@@ -9,6 +9,6 @@ namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories
         Task<City> AddAsync(T entity);
         Task RemoveAsync(Guid id);
         Task UpdateAsync(T entity);
-        Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate);
+        Task<bool> ExistsByPredicateAsync(Expression<Func<T, bool>> predicate);
     }
 }
