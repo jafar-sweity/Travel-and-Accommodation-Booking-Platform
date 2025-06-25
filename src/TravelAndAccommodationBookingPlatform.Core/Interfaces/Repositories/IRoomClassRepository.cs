@@ -4,7 +4,7 @@ using TravelAndAccommodationBookingPlatform.Core.Models;
 
 namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories
 {
-    interface IRoomClassRepository : IRepository<RoomClass>
+    public interface IRoomClassRepository : IRepository<RoomClass>
     {
         Task<PaginatedResult<RoomClass>> GetRoomClassesAsync(PaginatedQuery<RoomClass> query);
         Task<bool> ExistsAsync(Expression<Func<RoomClass, bool>> predicate);

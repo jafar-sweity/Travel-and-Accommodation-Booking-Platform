@@ -3,7 +3,7 @@ using TravelAndAccommodationBookingPlatform.Core.Models;
 
 namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories
 {
-    interface IReviewRepository : IRepository<Review>
+    public interface IReviewRepository : IRepository<Review>
     {
         Task<PaginatedResult<Review>> GetReviewsAsync(PaginatedQuery<Review> query);
         Task<Review?> GetReviewByIdAsync(Guid hotelId, Guid reviewId);

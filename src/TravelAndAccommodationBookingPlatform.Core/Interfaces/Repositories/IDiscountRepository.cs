@@ -3,7 +3,7 @@ using TravelAndAccommodationBookingPlatform.Core.Models;
 
 namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories
 {
-    interface IDiscountRepository : IRepository<Discount>
+    public interface IDiscountRepository : IRepository<Discount>
     {
         Task<PaginatedResult<Discount>> GetDiscountsAsync(PaginatedQuery<Discount> query);
     }
