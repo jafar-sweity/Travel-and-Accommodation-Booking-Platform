@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
+using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
-using TravelAndAccommodationBookingPlatform.Infrastructure.Interfaces.UnitOfWork;
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.UnitOfWork
 {

@@ -1,6 +1,6 @@
 ﻿namespace TravelAndAccommodationBookingPlatform.Core.Models
 {
-    class RoomManagementDto
+    public class RoomManagementDto
     {
         public Guid Id { get; set; }
         public Guid RoomClassId { get; set; }
