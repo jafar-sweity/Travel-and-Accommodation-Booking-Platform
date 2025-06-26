@@ -3,7 +3,7 @@ using TravelAndAccommodationBookingPlatform.Application.DTOs.OwnerDtos;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Queries.OwnerQueries
 {
-    class GetOwnerByIdQuery : IRequest<OwnerResponseDto>
+    public class GetOwnerByIdQuery : IRequest<OwnerResponseDto>
     {
         public Guid Id { get; set; }
     }

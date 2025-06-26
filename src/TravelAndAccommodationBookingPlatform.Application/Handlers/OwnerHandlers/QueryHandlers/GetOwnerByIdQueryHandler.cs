@@ -13,6 +13,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.OwnerHandle
     {
         private readonly IOwnerRepository _ownerRepository;
         private readonly IMapper _mapper;
+
         public GetOwnerByIdQueryHandler(
             IOwnerRepository ownerRepository,
             IMapper mapper)
@@ -20,6 +21,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.OwnerHandle
             _ownerRepository = ownerRepository;
             _mapper = mapper;
         }
+
         public async Task<OwnerResponseDto> Handle(GetOwnerByIdQuery request, CancellationToken cancellationToken)
         {
             var owner = await _ownerRepository.GetByIdAsync(request.Id) ?? throw new NotFoundException(OwnerMessages.OwnerNotFound);
