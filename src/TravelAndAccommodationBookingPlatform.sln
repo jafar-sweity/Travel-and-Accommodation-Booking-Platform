@@ -11,13 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAndAccommodationBooki
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAndAccommodationBookingPlatform.WebAPI", "TravelAndAccommodationBookingPlatform.WebAPI\TravelAndAccommodationBookingPlatform.WebAPI.csproj", "{7AAC6053-6263-4DF9-B1E2-146FAFFA2781}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{6DC5C55C-FF0E-4B1A-A1F1-9EAE5EBD1BAB}"
-	ProjectSection(SolutionItems) = preProject
-		dotnet-ci.yml = dotnet-ci.yml
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,9 +36,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{6DC5C55C-FF0E-4B1A-A1F1-9EAE5EBD1BAB} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5C0EBF4E-1FFD-4F01-AAB1-D3C292A07007}
