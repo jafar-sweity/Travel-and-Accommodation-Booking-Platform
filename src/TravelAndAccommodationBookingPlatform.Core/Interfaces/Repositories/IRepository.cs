@@ -1,12 +1,11 @@
 ﻿using System.Linq.Expressions;
-using TravelAndAccommodationBookingPlatform.Core.Entities;
 
 namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories
 {
     public interface IRepository<T> where T : class
     {
-        Task<City?> GetByIdAsync(Guid id);
-        Task<City> AddAsync(T entity);
+        Task<T?> GetByIdAsync(Guid id);
+        Task<T> AddAsync(T entity);
         Task RemoveAsync(Guid id);
         Task UpdateAsync(T entity);
         Task<bool> ExistsByPredicateAsync(Expression<Func<T, bool>> predicate);
