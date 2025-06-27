@@ -25,7 +25,8 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Auth
             new("sub", user.Id.ToString()),
             new("firstName", user.FirstName),
             new("lastName", user.LastName),
-            new("email", user.Email)
+            new("email", user.Email),
+            new ("username", user.Username),
         };
 
             claims.AddRange(user.Roles.Select(r => new Claim(ClaimTypes.Role, r.Name)));

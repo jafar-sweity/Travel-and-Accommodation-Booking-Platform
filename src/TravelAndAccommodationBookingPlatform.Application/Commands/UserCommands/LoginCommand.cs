@@ -5,7 +5,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Commands.UserCommand
 {
     public class LoginCommand : IRequest<LoginResponseDto>
     {
-        public string Email { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
     }
 }

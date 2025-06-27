@@ -27,7 +27,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.UserHandler
 
         public async Task<LoginResponseDto> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            var AuthenticatedUser = await _userRepository.AuthenticateUserAsync(request.Email, request.Password);
+            var AuthenticatedUser = await _userRepository.AuthenticateUserAsync(request.Username, request.Password);
 
             if (AuthenticatedUser == null)
             {
