@@ -2,7 +2,7 @@
 using MediatR;
 using TravelAndAccommodationBookingPlatform.Application.DTOs.OwnerDtos;
 using TravelAndAccommodationBookingPlatform.Application.Queries.OwnerQueries;
-using TravelAndAccommodationBookingPlatform.Core.DomainMessages;
+using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
 using TravelAndAccommodationBookingPlatform.Core.Exceptions;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 

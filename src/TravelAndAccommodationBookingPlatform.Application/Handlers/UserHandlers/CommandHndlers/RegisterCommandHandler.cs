@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using TravelAndAccommodationBookingPlatform.Application.Commands.UserCommands;
-using TravelAndAccommodationBookingPlatform.Core.DomainMessages;
+using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Exceptions;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Auth;

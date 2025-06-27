@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using TravelAndAccommodationBookingPlatform.Application.Commands.OwnerCommands;
-using TravelAndAccommodationBookingPlatform.Core.DomainMessages;
+using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 

@@ -1,4 +1,4 @@
-﻿namespace TravelAndAccommodationBookingPlatform.Core.DomainMessages
+﻿namespace TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages
 {
     public static class OwnerMessages
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelAndAccommodationBookingPlatform.Core.DomainMessages
+namespace TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages
 {
     public static class RoomClassMessages
     {
