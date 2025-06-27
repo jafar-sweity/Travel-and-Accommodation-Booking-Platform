@@ -14,27 +14,30 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.UserHandler
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
+        private readonly IPasswordHashService _passwordHashService;
 
         public LoginCommandHandler(
             IUserRepository userRepository,
             IMapper mapper,
-            IJwtTokenGenerator jwtTokenGenerator)
+            IJwtTokenGenerator jwtTokenGenerator,
+            IPasswordHashService passwordHashService)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _jwtTokenGenerator = jwtTokenGenerator;
+            _passwordHashService = passwordHashService;
         }
 
         public async Task<LoginResponseDto> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            var AuthenticatedUser = await _userRepository.AuthenticateUserAsync(request.Username, request.Password);
+            var user = await _userRepository.GetUserByUsernameAsync(request.Username);
 
-            if (AuthenticatedUser == null)
+            if (user == null || !_passwordHashService.VerifyPassword(request.Password, user.HashedPassword))
             {
                 throw new CredentialsNotValidException(UserMessages.InvalidCredentials);
             }
 
-            var jwtToken = _jwtTokenGenerator.CreateTokenForUser(AuthenticatedUser);
+            var jwtToken = _jwtTokenGenerator.CreateTokenForUser(user);
 
             return _mapper.Map<LoginResponseDto>(jwtToken);
         }
