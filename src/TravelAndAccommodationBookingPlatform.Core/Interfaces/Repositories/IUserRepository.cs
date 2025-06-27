@@ -2,10 +2,9 @@
 
 namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories
 {
-    interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<User>
     {
         Task<User?> AuthenticateUserAsync(string email, string password);
         Task<bool> UserExistsByEmailAsync(string email);
-
     }
 }
