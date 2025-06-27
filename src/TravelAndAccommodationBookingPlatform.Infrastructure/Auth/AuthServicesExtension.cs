@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Auth;
+using TravelAndAccommodationBookingPlatform.Core.Interfaces.Services.Authentication;
 
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.Auth
@@ -15,6 +16,8 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Auth
             this IServiceCollection services)
         {
             services.AddScoped<IValidator<JwtSettings>, JwtSettingsValidator>();
+            services.AddScoped<IPasswordHashService, PasswordHashService>();
+
 
             services.AddOptions<JwtSettings>()
                 .BindConfiguration(nameof(JwtSettings))
