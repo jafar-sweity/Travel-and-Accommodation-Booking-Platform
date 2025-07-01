@@ -15,8 +15,4 @@
     <ProjectReference Include="..\TravelAndAccommodationBookingPlatform.Core\TravelAndAccommodationBookingPlatform.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Commands\BookingCommands\" />
-  </ItemGroup>
-
 </Project>

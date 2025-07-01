@@ -2,7 +2,7 @@
 
 namespace TravelAndAccommodationBookingPlatform.Application.Commands.CityCommands
 {
-    class UpdateCityCommand : IRequest
+    public class UpdateCityCommand : IRequest
     {
         public Guid CityId { get; set; }
         public string Name { get; set; } = string.Empty;
