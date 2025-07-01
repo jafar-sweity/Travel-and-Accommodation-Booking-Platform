@@ -8,7 +8,7 @@ using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Handlers.RoomHandlers
 {
-    class UpdateRoomHandler : IRequestHandler<UpdateRoomCommand>
+    public class UpdateRoomHandler : IRequestHandler<UpdateRoomCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRoomRepository _roomRepository;

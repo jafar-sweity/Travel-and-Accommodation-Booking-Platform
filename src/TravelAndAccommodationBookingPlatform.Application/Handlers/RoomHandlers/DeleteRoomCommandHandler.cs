@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using TravelAndAccommodationBookingPlatform.Application.Commands.RoomCommands;
 using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
 using TravelAndAccommodationBookingPlatform.Core.Exceptions;
@@ -8,47 +7,41 @@ using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Handlers.RoomHandlers
 {
-    public class CreateRoomHndler : IRequestHandler<CreateRoomCommand, Guid>
+    public class DeleteRoomCommandHandler : IRequestHandler<DeleteRoomCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRoomRepository _roomRepository;
-        private readonly IMapper _mapper;
+        private readonly IBookingRepository _bookingRepository;
         private readonly IRoomClassRepository _roomClassRepository;
 
-        public CreateRoomHndler(
+        public DeleteRoomCommandHandler(
             IUnitOfWork unitOfWork,
             IRoomRepository roomRepository,
-            IMapper mapper,
+            IBookingRepository bookingRepository,
             IRoomClassRepository roomClassRepository)
         {
             _unitOfWork = unitOfWork;
             _roomRepository = roomRepository;
-            _mapper = mapper;
+            _bookingRepository = bookingRepository;
             _roomClassRepository = roomClassRepository;
         }
 
-        public async Task<Guid> Handle(CreateRoomCommand request, CancellationToken cancellationToken)
+        public async Task Handle(DeleteRoomCommand request, CancellationToken cancellationToken)
         {
-            var roomClassExists = await _roomClassRepository.ExistsByPredicateAsync(rc => rc.Id == request.RoomClassId);
+            var roomClassExists = await _roomClassRepository.ExistsAsync(rc => rc.Id == request.RoomClassId);
 
             if (!roomClassExists)
-            {
                 throw new NotFoundException(RoomClassMessages.RoomClassNotFound);
-            }
 
-            var roomExists = await _roomRepository.ExistsByPredicateAsync(r => r.Number == request.Number && r.RoomClassId == request.RoomClassId);
+            var room = await _roomRepository.GetRoomByIdAsync(request.RoomClassId, request.RoomId) ?? throw new NotFoundException(RoomMessages.RoomNotFound);
 
-            if (roomExists)
-            {
-                throw new RoomWithNumberExistsInRoomClassException(RoomClassMessages.DuplicatedRoomNumber);
-            }
+            var hasBookings = await _bookingRepository.ExistsByPredicateAsync(b => b.Rooms.Any(r => r.Id == request.RoomId));
+            if (hasBookings)
+                throw new InvalidOperationException(RoomMessages.CannotDeleteRoom);
 
-            var newRoom = _mapper.Map<Core.Entities.Room>(request);
-
-            await _roomRepository.AddAsync(newRoom);
+            await _roomRepository.RemoveAsync(request.RoomId);
             await _unitOfWork.SaveChangesAsync();
-            return newRoom.Id;
-
         }
     }
+
 }
