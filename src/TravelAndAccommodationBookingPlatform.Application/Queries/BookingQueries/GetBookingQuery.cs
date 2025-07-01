@@ -5,7 +5,7 @@ using TravelAndAccommodationBookingPlatform.Core.Models;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Queries.BookingQueries
 {
-    class GetBookingQuery : IRequest<PaginatedResult<BookingResponseDTO>>
+    public class GetBookingQuery : IRequest<PaginatedResult<BookingResponseDTO>>
     {
         public string? SortColumn { get; set; }
         public int PageNumber { get; set; } = 1;

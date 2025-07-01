@@ -1,6 +1,6 @@
 ﻿namespace TravelAndAccommodationBookingPlatform.Application.DTOs.BookingDtos
 {
-    class BookingResponseDTO
+    public class BookingResponseDTO
     {
         public Guid Id { get; set; }
         public string HotelName { get; set; }

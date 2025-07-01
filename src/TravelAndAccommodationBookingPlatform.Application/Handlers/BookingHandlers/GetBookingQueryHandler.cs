@@ -1,31 +1,33 @@
 ﻿using AutoMapper;
 using MediatR;
+using System.Linq.Expressions;
 using TravelAndAccommodationBookingPlatform.Application.DTOs.BookingDtos;
 using TravelAndAccommodationBookingPlatform.Application.Queries.BookingQueries;
 using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
-using TravelAndAccommodationBookingPlatform.Core.Exceptions;
+using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
+using TravelAndAccommodationBookingPlatform.Core.Models;
 using TravelAndAccommodationBookingPlatform.Core.Services.Authentication;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Handlers.BookingHandlers
 {
-    public class GetBookingByIdHandler : IRequestHandler<GetBookingByIdQuery, BookingResponseDTO>
+    public class GetBookingQueryHandler : IRequestHandler<GetBookingQuery, PaginatedResult<BookingResponseDTO>>
     {
-        private readonly IBookingRepository _bookingRepository;
         private readonly IMapper _mapper;
+        private readonly IBookingRepository _bookingRepository;
         private readonly ICurrentUserService _currentUserService;
 
-        public GetBookingByIdHandler(
-            IBookingRepository bookingRepository,
+        public GetBookingQueryHandler(
             IMapper mapper,
+            IBookingRepository bookingRepository,
             ICurrentUserService currentUserService)
         {
-            _bookingRepository = bookingRepository;
             _mapper = mapper;
+            _bookingRepository = bookingRepository;
             _currentUserService = currentUserService;
         }
 
-        public async Task<BookingResponseDTO> Handle(GetBookingByIdQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedResult<BookingResponseDTO>> Handle(GetBookingQuery request, CancellationToken cancellationToken)
         {
             var guestId = _currentUserService.GetUserId();
 
@@ -41,14 +43,19 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.BookingHand
                 throw new UnauthorizedAccessException(UserMessages.UserNotGuest);
             }
 
-            var booking = await _bookingRepository.GetBookingByIdAsync(request.BookingId, guestId);
+            var filterExpression = (Expression<Func<Booking, bool>>)(b => b.GuestId == guestId);
 
-            if (booking == null)
-            {
-                throw new NotFoundException(BookingMessages.BookingNotFound);
-            }
+            var paginatedQuery = new PaginatedQuery<Booking>(
+                filterExpression,
+                request.SortColumn,
+                request.PageNumber,
+                request.PageSize,
+                request.OrderDirection != default ? request.OrderDirection : Core.Enums.OrderDirection.Ascending
+            );
 
-            return _mapper.Map<BookingResponseDTO>(booking);
+            var bookings = await _bookingRepository.GetBookingsAsync(paginatedQuery);
+
+            return _mapper.Map<PaginatedResult<BookingResponseDTO>>(bookings);
         }
     }
 }

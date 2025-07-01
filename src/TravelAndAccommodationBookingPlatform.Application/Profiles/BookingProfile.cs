@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using TravelAndAccommodationBookingPlatform.Application.DTOs.BookingDtos;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
+using TravelAndAccommodationBookingPlatform.Core.Models;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Profiles
 {
@@ -16,6 +17,8 @@ namespace TravelAndAccommodationBookingPlatform.Application.Profiles
                 .ForMember(dest => dest.CheckOutDate, opt => opt.MapFrom(src => src.CheckOutDate))
                 .ForMember(dest => dest.BookingDate, opt => opt.MapFrom(src => src.BookingDate))
                 .ForMember(dest => dest.GuestRemarks, opt => opt.MapFrom(src => src.GuestRemarks));
+
+            CreateMap<PaginatedResult<Booking>, PaginatedResult<BookingResponseDTO>>();
         }
     }
 }
