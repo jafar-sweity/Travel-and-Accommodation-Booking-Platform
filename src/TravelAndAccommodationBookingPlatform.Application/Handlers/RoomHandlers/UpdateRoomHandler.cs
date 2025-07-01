@@ -15,7 +15,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.RoomHandler
         private readonly IMapper _mapper;
         private readonly IRoomClassRepository _roomClassRepository;
 
-        public UpdateRoomCommandHandler(
+        public UpdateRoomHandler(
             IUnitOfWork unitOfWork,
             IRoomRepository roomRepository,
             IMapper mapper,
