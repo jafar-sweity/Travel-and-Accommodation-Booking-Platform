@@ -8,7 +8,7 @@ using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Handlers.CityHandlers
 {
-    class UpdateCityHandler : IRequestHandler<UpdateCityCommand>
+    public class UpdateCityHandler : IRequestHandler<UpdateCityCommand>
     {
         private readonly ICityRepository _cityRepository;
         private readonly IMapper _mapper;

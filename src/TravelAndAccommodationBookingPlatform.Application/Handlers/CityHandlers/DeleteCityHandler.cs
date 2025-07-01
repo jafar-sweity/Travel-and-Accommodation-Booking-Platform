@@ -7,7 +7,7 @@ using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Handlers.CityHandlers
 {
-    class DeleteCityHandler : IRequestHandler<DeleteCityCommand>
+    public class DeleteCityHandler : IRequestHandler<DeleteCityCommand>
     {
         private readonly ICityRepository _cityRepository;
         private readonly IUnitOfWork _unitOfWork;

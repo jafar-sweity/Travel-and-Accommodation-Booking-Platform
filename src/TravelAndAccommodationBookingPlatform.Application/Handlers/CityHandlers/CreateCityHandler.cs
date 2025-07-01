@@ -9,7 +9,7 @@ using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Handlers.CityHandlers
 {
-    class CreateCityHandler : IRequestHandler<CreateCityCommand, CityResponseDto>
+    public class CreateCityHandler : IRequestHandler<CreateCityCommand, CityResponseDto>
     {
         private readonly ICityRepository _cityRepository;
         private readonly IMapper _mapper;

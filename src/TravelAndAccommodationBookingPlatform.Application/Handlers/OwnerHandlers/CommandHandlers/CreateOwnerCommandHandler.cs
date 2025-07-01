@@ -8,7 +8,7 @@ using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Handlers.OwnerHandlers.CommandHandlers
 {
-    class CreateOwnerCommandHandler : IRequestHandler<CreateOwnerCommand, OwnerResponseDto>
+    public class CreateOwnerCommandHandler : IRequestHandler<CreateOwnerCommand, OwnerResponseDto>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;

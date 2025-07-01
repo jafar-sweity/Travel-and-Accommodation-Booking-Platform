@@ -1,6 +1,6 @@
 ﻿namespace TravelAndAccommodationBookingPlatform.Application.DTOs.CityDtos
 {
-    class CityResponseDto
+    public class CityResponseDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;

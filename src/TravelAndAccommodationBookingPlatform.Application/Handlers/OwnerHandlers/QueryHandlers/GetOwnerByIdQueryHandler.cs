@@ -9,7 +9,7 @@ using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Handlers.OwnerHandlers.QueryHandlers
 {
-    class GetOwnerByIdQueryHandler : IRequestHandler<GetOwnerByIdQuery, OwnerResponseDto>
+    public class GetOwnerByIdQueryHandler : IRequestHandler<GetOwnerByIdQuery, OwnerResponseDto>
     {
         private readonly IOwnerRepository _ownerRepository;
         private readonly IMapper _mapper;
