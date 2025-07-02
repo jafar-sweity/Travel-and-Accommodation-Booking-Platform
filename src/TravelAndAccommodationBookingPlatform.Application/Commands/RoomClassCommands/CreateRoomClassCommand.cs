@@ -2,7 +2,7 @@
 
 namespace TravelAndAccommodationBookingPlatform.Application.Commands.RoomClassCommands
 {
-    class CreateRoomClassCommand : IRequest<Guid>
+    public class CreateRoomClassCommand : IRequest<Guid>
     {
         public Guid HotelId { get; set; }
         public string Name { get; set; }
