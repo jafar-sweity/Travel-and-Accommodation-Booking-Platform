@@ -43,5 +43,4 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.RoomHandler
             await _unitOfWork.SaveChangesAsync();
         }
     }
-
 }
