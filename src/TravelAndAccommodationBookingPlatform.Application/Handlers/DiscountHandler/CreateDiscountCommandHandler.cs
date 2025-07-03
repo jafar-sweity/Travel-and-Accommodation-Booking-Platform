@@ -10,7 +10,7 @@ using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Handlers.DiscountHandler
 {
-    class CreateDiscountCommandHandler : IRequestHandler<CreateDiscountCommand, DiscountResponseDto>
+    public class CreateDiscountCommandHandler : IRequestHandler<CreateDiscountCommand, DiscountResponseDto>
     {
         private readonly IDiscountRepository _discountRepository;
         private readonly IMapper _mapper;
@@ -46,7 +46,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.DiscountHan
             var discount = _mapper.Map<Core.Entities.Discount>(request);
 
             discount.CreatedAt = DateTime.Now;
-             
+
             await _discountRepository.AddAsync(discount);
             await _unitOfWork.SaveChangesAsync();
 

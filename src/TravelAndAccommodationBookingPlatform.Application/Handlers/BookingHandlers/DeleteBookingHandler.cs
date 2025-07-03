@@ -8,7 +8,7 @@ using TravelAndAccommodationBookingPlatform.Core.Services.Authentication;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Handlers.BookingHandlers
 {
-    class DeleteBookingHandler : IRequestHandler<DeleteBookingCommand>
+    public class DeleteBookingHandler : IRequestHandler<DeleteBookingCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IBookingRepository _bookingRepository;
