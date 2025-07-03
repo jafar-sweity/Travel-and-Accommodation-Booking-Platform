@@ -46,7 +46,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.DiscountHan
             var discount = _mapper.Map<Core.Entities.Discount>(request);
 
             discount.CreatedAt = DateTime.Now;
-
+             
             await _discountRepository.AddAsync(discount);
             await _unitOfWork.SaveChangesAsync();
 
