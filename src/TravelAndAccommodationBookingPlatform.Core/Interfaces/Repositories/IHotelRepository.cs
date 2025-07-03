@@ -9,5 +9,6 @@ namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories
         Task UpdateHotelRatingAsync(Guid id, double newRating);
         Task<PaginatedResult<HotelManagementDto>> GetHotelsForManagementPageAsync(PaginatedQuery<Hotel> query);
         Task<PaginatedResult<HotelSearchDto>> FindHotelsAsync(PaginatedQuery<Hotel> query);
+        Task UpdateReviewById(Guid hotelId, int newRating);
     }
 }

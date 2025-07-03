@@ -9,5 +9,6 @@ namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories
         Task<Review?> GetReviewByIdAsync(Guid hotelId, Guid reviewId);
         Task<Review?> GetReviewByIdAsync(Guid reviewId, Guid hotelId, Guid guestId);
         Task<int> GetHotelReviewCountAsync(Guid hotelId);
+        Task<int> GetHotelRatingAsync(Guid hotelId);
     }
 }
