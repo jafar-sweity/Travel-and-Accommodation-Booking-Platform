@@ -9,6 +9,8 @@ namespace TravelAndAccommodationBookingPlatform.Application.Profiles
         public ReviewProfile()
         {
             CreateMap<Review, ReviewResponseDto>();
+            CreateMap<UpdateReviewCommand, Review>();
+            CreateMap<Review, ReviewResponseDto>();
         }
     }
 }
