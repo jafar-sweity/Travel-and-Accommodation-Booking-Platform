@@ -6,7 +6,7 @@ using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
 using TravelAndAccommodationBookingPlatform.Core.Exceptions;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 
-namespace TravelAndAccommodationBookingPlatform.Application.Handlers.RoomClassHandlers
+namespace TravelAndAccommodationBookingPlatform.Application.Handlers.DiscountHandler
 {
     class GetDiscountByIdQueryHandler : IRequestHandler<GetDiscountByIdQuery, DiscountResponseDto>
     {
