@@ -10,7 +10,7 @@ using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Handlers.HotelHandlers
 {
-    class CreateHotelCommandHandler : IRequestHandler<CreateHotelCommand, Guid>
+    public class CreateHotelCommandHandler : IRequestHandler<CreateHotelCommand, Guid>
     {
         private readonly IHotelRepository _hotelRepository;
         private readonly IOwnerRepository _ownerRepository;
