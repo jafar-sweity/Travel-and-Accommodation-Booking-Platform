@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using TravelAndAccommodationBookingPlatform.Application.Commands.ReviewCommands;
 using TravelAndAccommodationBookingPlatform.Application.DTOs.ReviewDtos;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
+using TravelAndAccommodationBookingPlatform.Core.Models;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Profiles
 {
@@ -11,6 +13,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Profiles
             CreateMap<Review, ReviewResponseDto>();
             CreateMap<UpdateReviewCommand, Review>();
             CreateMap<Review, ReviewResponseDto>();
+            CreateMap<PaginatedResult<Review>, PaginatedResult<ReviewResponseDto>>().ForMember(dst => dst.Items, options => options.MapFrom(src => src.Items));
         }
     }
 }
