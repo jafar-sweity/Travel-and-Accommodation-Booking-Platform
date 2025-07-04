@@ -14,6 +14,9 @@ namespace TravelAndAccommodationBookingPlatform.Application.Profiles
             CreateMap<UpdateRoomCommand, Room>();
             CreateMap<RoomManagementDto, RoomManagementResponseDto>();
             CreateMap<PaginatedResult<RoomManagementDto>, PaginatedResult<RoomManagementResponseDto>>();
+            CreateMap<Room, RoomGuestResponseDto>();
+            CreateMap<PaginatedResult<RoomManagementDto>, PaginatedResult<RoomManagementResponseDto>>().ForMember(dst => dst.Items, options => options.MapFrom(src => src.Items));
+            CreateMap<PaginatedResult<Room>, PaginatedResult<RoomGuestResponseDto>>().ForMember(dst => dst.Items, options => options.MapFrom(src => src.Items));
         }
     }
 }
