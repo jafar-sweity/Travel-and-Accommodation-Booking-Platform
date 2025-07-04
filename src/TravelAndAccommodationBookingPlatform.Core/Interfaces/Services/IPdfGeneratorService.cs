@@ -1,7 +1,9 @@
-﻿namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Services
+﻿using TravelAndAccommodationBookingPlatform.Core.Entities;
+
+namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Services
 {
     public interface IPdfGeneratorService
     {
-        Task<byte[]> GeneratePdfFromHtmlAsync(string htmlContent);
+        Task<byte[]> GenerateInvoiceAsync(Booking booking);
     }
 }
