@@ -13,6 +13,7 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
         {
             _context = context;
         }
+
         public async Task<Role?> GetRoleByNameAsync(string name)
         {
             return await _context.Roles
