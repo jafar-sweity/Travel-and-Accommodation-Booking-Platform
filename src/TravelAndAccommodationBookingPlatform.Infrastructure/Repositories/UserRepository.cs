@@ -16,9 +16,10 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 
         public async Task<User?> GetUserByUsernameAsync(string username)
         {
+
             return await _context.Users
-                .Include(u => u.Roles)
-                .FirstOrDefaultAsync(u => u.Username.ToLower() == username.ToLower());
+                        .Include(u => u.Roles)
+                        .FirstOrDefaultAsync(u => u.Username == username);
         }
 
         public async Task<bool> UserExistsByEmailAsync(string email)
