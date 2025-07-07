@@ -2,7 +2,7 @@
 
 namespace TravelAndAccommodationBookingPlatform.Application.Commands.UserCommands
 {
-    class RegisterCommand : IRequest
+    public class RegisterCommand : IRequest
     {
         public string Username { get; set; } = string.Empty;
         public string FirstName { get; init; }
