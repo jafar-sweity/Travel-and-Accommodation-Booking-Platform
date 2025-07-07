@@ -21,13 +21,16 @@ builder.Services.AddSingleton<IAmazonS3>(sp =>
 {
     var config = sp.GetRequiredService<IOptions<AWSS3Settings>>().Value;
 
-    var awsConfig = new AmazonS3Config
+    var credentials = new Amazon.Runtime.BasicAWSCredentials(config.AccessKey, config.SecretKey);
+
+    var s3Config = new AmazonS3Config
     {
         RegionEndpoint = RegionEndpoint.GetBySystemName(config.Region)
     };
 
-    return new AmazonS3Client(awsConfig);
+    return new AmazonS3Client(credentials, s3Config);
 });
+
 
 var app = builder.Build();
 
