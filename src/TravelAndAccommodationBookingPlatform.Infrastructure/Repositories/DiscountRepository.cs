@@ -7,7 +7,7 @@ using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 {
-    class DiscountRepository : Repository<Discount>, IDiscountRepository
+    public class DiscountRepository : Repository<Discount>, IDiscountRepository
     {
         private readonly AppDbContext _context;
 
