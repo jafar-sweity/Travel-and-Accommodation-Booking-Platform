@@ -61,10 +61,8 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
         public async Task<IActionResult> CreateCity([FromBody] CityCreationRequestDto cityCreationRequestDto)
         {
             var command = _mapper.Map<CreateCityCommand>(cityCreationRequestDto);
-
-            var result = await _mediator.Send(command);
-
-            return CreatedAtAction(nameof(GetCitiesManagement), new { id = result.Id }, _mapper.Map<CityResponseDto>(result));
+            await _mediator.Send(command);
+            return Created();
         }
 
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -83,7 +81,6 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
             _mapper.Map(imageCreationRequestDto, command);
             await _mediator.Send(command);
             return NoContent();
-
         }
 
         [ProducesResponseType(StatusCodes.Status204NoContent)]
