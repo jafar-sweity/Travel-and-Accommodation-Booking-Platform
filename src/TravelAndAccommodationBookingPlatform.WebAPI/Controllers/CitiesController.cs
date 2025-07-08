@@ -7,6 +7,7 @@ using TravelAndAccommodationBookingPlatform.Application.Commands.CityCommands;
 using TravelAndAccommodationBookingPlatform.Application.DTOs.CityDtos;
 using TravelAndAccommodationBookingPlatform.Application.Queries.CityQueries;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Cities;
+using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Images;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
 {
@@ -76,7 +77,7 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
             var command = new AddCitySmallPreviewImageCommand
             {
                 CityId = id,
-                Image = form
+
             };
 
             _mapper.Map(imageCreationRequestDto, command);
