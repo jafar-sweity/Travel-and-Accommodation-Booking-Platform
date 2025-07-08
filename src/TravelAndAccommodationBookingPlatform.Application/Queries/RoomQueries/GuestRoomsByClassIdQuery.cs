@@ -4,7 +4,7 @@ using TravelAndAccommodationBookingPlatform.Core.Models;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Queries.RoomQueries
 {
-    class GuestRoomsByClassIdQuery : IRequest<PaginatedResult<RoomGuestResponseDto>>
+    public class GuestRoomsByClassIdQuery : IRequest<PaginatedResult<RoomGuestResponseDto>>
     {
         public int PageNumber { get; init; }
         public int PageSize { get; init; }
