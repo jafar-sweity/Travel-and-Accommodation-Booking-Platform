@@ -4,6 +4,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Queries.BookingQueri
 {
     public class RetrieveInvoicePdfQuery : IRequest<byte[]>
     {
-        public Guid BookingId { get; }
+        public Guid BookingId { get; set; }
     }
 }

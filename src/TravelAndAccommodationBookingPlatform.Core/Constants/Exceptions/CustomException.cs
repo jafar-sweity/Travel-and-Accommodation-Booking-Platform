@@ -1,4 +1,4 @@
-﻿namespace TravelAndAccommodationBookingPlatform.Core.Exceptions
+﻿namespace TravelAndAccommodationBookingPlatform.Core.Constants.Exceptions
 {
     public abstract class CustomException : Exception
     {
