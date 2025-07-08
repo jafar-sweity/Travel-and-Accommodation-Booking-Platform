@@ -25,7 +25,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.RoomClassHa
             if (!await _roomClassRepository.ExistsAsync(rc => rc.Id == request.RoomClassId))
                 throw new NotFoundException(RoomClassMessages.RoomClassNotFound);
 
-            var image = await _imageRepository.UploadImageAsync(request.Image, request.RoomClassId, ImageType.Gallery);
+            var image = await _imageRepository.UploadImageAsync(request.Image, request.RoomClassId);
             await _unitOfWork.SaveChangesAsync();
 
         }
