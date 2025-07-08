@@ -14,6 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
 });
+
 builder.Services.Configure<AWSS3Settings>(
     builder.Configuration.GetSection("AWSS3Settings"));
 
