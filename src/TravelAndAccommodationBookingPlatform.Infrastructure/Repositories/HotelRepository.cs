@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
+using TravelAndAccommodationBookingPlatform.Core.Constants.Exceptions;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
-using TravelAndAccommodationBookingPlatform.Core.Exceptions;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;

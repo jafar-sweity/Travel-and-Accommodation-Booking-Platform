@@ -3,7 +3,7 @@ using MediatR;
 using System.ComponentModel.DataAnnotations;
 using TravelAndAccommodationBookingPlatform.Application.Commands.ReviewCommands;
 using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
-using TravelAndAccommodationBookingPlatform.Core.Exceptions;
+using TravelAndAccommodationBookingPlatform.Core.Constants.Exceptions;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 using TravelAndAccommodationBookingPlatform.Core.Services.Authentication;

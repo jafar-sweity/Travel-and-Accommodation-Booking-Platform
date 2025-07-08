@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using TravelAndAccommodationBookingPlatform.Application.Commands.DiscountCommands;
 using TravelAndAccommodationBookingPlatform.Application.DTOs.DiscountDtos;
 using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
-using TravelAndAccommodationBookingPlatform.Core.Exceptions;
+using TravelAndAccommodationBookingPlatform.Core.Constants.Exceptions;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 

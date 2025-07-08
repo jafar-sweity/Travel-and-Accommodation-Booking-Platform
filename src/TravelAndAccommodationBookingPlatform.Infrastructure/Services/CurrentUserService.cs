@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
-using TravelAndAccommodationBookingPlatform.Core.Exceptions;
+using TravelAndAccommodationBookingPlatform.Core.Constants.Exceptions;
 using TravelAndAccommodationBookingPlatform.Core.Services.Authentication;
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.Services

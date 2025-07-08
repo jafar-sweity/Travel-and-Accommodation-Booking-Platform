@@ -3,7 +3,7 @@ using MediatR;
 using TravelAndAccommodationBookingPlatform.Application.DTOs.DiscountDtos;
 using TravelAndAccommodationBookingPlatform.Application.Queries.DiscountQueries;
 using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
-using TravelAndAccommodationBookingPlatform.Core.Exceptions;
+using TravelAndAccommodationBookingPlatform.Core.Constants.Exceptions;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 

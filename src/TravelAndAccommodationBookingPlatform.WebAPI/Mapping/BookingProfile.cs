@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using TravelAndAccommodationBookingPlatform.Application.Commands.BookingCommands;
 using TravelAndAccommodationBookingPlatform.Application.Queries.BookingQueries;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Bookings;
 
@@ -8,7 +9,7 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Mapping
     {
         public BookingProfile()
         {
-            CreateMap<BookingCreationRequestDto, CreateBookingC>();
+            CreateMap<BookingCreationRequestDto, CreateBookingCommand>();
             CreateMap<GetBookingsRequestDto, GetBookingQuery>()
                 .ForMember(
                     dst => dst.OrderDirection,

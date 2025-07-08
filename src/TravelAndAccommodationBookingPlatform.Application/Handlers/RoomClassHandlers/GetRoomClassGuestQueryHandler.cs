@@ -4,9 +4,9 @@ using System.Linq.Expressions;
 using TravelAndAccommodationBookingPlatform.Application.DTOs.RoomClassDtos;
 using TravelAndAccommodationBookingPlatform.Application.Queries.RoomClassQueries;
 using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
+using TravelAndAccommodationBookingPlatform.Core.Constants.Exceptions;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Enums;
-using TravelAndAccommodationBookingPlatform.Core.Exceptions;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 

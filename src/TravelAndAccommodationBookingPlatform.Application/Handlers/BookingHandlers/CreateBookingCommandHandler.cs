@@ -7,6 +7,7 @@ using TravelAndAccommodationBookingPlatform.Core.Interfaces.Services;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 using TravelAndAccommodationBookingPlatform.Core.Services.Authentication;
 
+
 namespace TravelAndAccommodationBookingPlatform.Application.Handlers.BookingHandlers
 {
     public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand, BookingResponseDTO>

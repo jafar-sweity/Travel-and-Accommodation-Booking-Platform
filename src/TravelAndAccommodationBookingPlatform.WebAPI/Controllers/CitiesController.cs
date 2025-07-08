@@ -71,7 +71,7 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPut("{id:guid}/thumbnail")]
-        public async Task<IActionResult> AddCitySmallPreviewImage(Guid id, [FromForm] IFormFile form)
+        public async Task<IActionResult> AddCitySmallPreviewImage(Guid id, [FromForm] ImageCreationRequestDto imageCreationRequestDto)
         {
             var command = new AddCitySmallPreviewImageCommand
             {
@@ -79,6 +79,7 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
                 Image = form
             };
 
+            _mapper.Map(imageCreationRequestDto, command);
             await _mediator.Send(command);
             return NoContent();
 
@@ -92,7 +93,8 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> UpdateCity(Guid id, [FromBody] CityUpdateRequestDto cityUpdateRequestDto)
         {
-            var command = _mapper.Map<UpdateCityCommand>(cityUpdateRequestDto);
+            var command = new UpdateCityCommand { CityId = id };
+            _mapper.Map(cityUpdateRequestDto, command);
 
             await _mediator.Send(command);
             return NoContent();
