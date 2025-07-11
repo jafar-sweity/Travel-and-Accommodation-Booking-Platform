@@ -29,12 +29,14 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.RoomClassHa
 
         public async Task Handle(UpdateRoomClassCommand request, CancellationToken cancellationToken)
         {
-            var roomClass = await _roomClassRepository.GetByIdAsync(request.HotelId);
+            var roomClass = await _roomClassRepository.GetByIdAsync(request.RoomClassId);
             if (roomClass == null)
                 throw new NotFoundException(RoomClassMessages.RoomClassNotFound);
 
-            if (await _roomClassRepository.ExistsAsync(rc => rc.HotelId == request.HotelId && rc.Name == request.Name))
+
+            if (await _roomClassRepository.ExistsAsync(rc => rc.HotelId == roomClass.HotelId && rc.Name == request.Name))
                 throw new RoomClassWithSameNameFoundException(RoomClassMessages.RoomClassNameExistsInHotel);
+
 
             _mapper.Map(request, roomClass);
 
