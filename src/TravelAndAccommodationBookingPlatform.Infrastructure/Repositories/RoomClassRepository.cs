@@ -47,7 +47,42 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 
         public async Task<IEnumerable<RoomClass>> GetFeaturedRoomsAsync(int count)
         {
-            throw new NotImplementedException("This method is not implemented yet.");
+            var currentDate = DateTime.UtcNow;
+
+
+            var roomsWithActiveDiscounts = await _context.RoomClasses
+                .Include(rc => rc.Hotel)
+                    .ThenInclude(h => h.City)
+                .Include(rc => rc.Gallery)
+                .Include(rc => rc.Discounts)
+                .Where(rc => rc.Discounts.Any(d => d.StartDate <= currentDate && d.EndDate > currentDate))
+                .ToListAsync();
+            var roomWithBestDiscountPerHotel = roomsWithActiveDiscounts
+                   .Select(rc => new
+                   {
+                       RoomClass = rc,
+                       ActiveDiscount = rc.Discounts
+                           .Where(d => d.StartDate <= currentDate && d.EndDate > currentDate)
+                           .OrderByDescending(d => d.Percentage)
+                           .ThenBy(d => rc.NightlyRate)
+                           .FirstOrDefault()
+                   })
+                   .GroupBy(x => x.RoomClass.HotelId)
+                   .Select(g => g
+                       .OrderByDescending(x => x.ActiveDiscount.Percentage)
+                       .ThenBy(x => x.RoomClass.NightlyRate)
+                       .First())
+                   .OrderByDescending(x => x.ActiveDiscount.Percentage)
+                   .ThenBy(x => x.RoomClass.NightlyRate)
+                   .Take(count)
+                   .ToList();
+
+            foreach (var item in roomWithBestDiscountPerHotel)
+            {
+                item.RoomClass.Discounts = new List<Discount> { item.ActiveDiscount };
+            }
+
+            return roomWithBestDiscountPerHotel.Select(x => x.RoomClass);
         }
     }
 }
