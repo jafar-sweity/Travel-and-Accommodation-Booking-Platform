@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -13,7 +14,7 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Auth
     public static class AuthServicesExtension
     {
         public static IServiceCollection AddAuthServices(
-            this IServiceCollection services)
+            this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IValidator<JwtSettings>, JwtSettingsValidator>();
             services.AddScoped<IPasswordHashService, PasswordHashService>();

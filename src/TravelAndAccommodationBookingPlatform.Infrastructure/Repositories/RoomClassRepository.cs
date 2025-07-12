@@ -49,7 +49,6 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
         {
             var currentDate = DateTime.UtcNow;
 
-
             var roomsWithActiveDiscounts = await _context.RoomClasses
                 .Include(rc => rc.Hotel)
                     .ThenInclude(h => h.City)
@@ -57,29 +56,37 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
                 .Include(rc => rc.Discounts)
                 .Where(rc => rc.Discounts.Any(d => d.StartDate <= currentDate && d.EndDate > currentDate))
                 .ToListAsync();
+
             var roomWithBestDiscountPerHotel = roomsWithActiveDiscounts
-                   .Select(rc => new
-                   {
-                       RoomClass = rc,
-                       ActiveDiscount = rc.Discounts
-                           .Where(d => d.StartDate <= currentDate && d.EndDate > currentDate)
-                           .OrderByDescending(d => d.Percentage)
-                           .ThenBy(d => rc.NightlyRate)
-                           .FirstOrDefault()
-                   })
-                   .GroupBy(x => x.RoomClass.HotelId)
-                   .Select(g => g
-                       .OrderByDescending(x => x.ActiveDiscount.Percentage)
-                       .ThenBy(x => x.RoomClass.NightlyRate)
-                       .First())
-                   .OrderByDescending(x => x.ActiveDiscount.Percentage)
-                   .ThenBy(x => x.RoomClass.NightlyRate)
-                   .Take(count)
-                   .ToList();
+                .Select(rc => new
+                {
+                    RoomClass = rc,
+                    ActiveDiscount = rc.Discounts
+                        .Where(d => d.StartDate <= currentDate && d.EndDate > currentDate)
+                        .OrderByDescending(d => d.Percentage)
+                        .ThenBy(d => rc.NightlyRate)
+                        .FirstOrDefault()
+                })
+                .GroupBy(x => x.RoomClass.HotelId)
+                .Select(g => g
+                    .OrderByDescending(x => x.ActiveDiscount?.Percentage ?? 0)
+                    .ThenBy(x => x.RoomClass.NightlyRate)
+                    .First())
+                .OrderByDescending(x => x.ActiveDiscount?.Percentage ?? 0)
+                .ThenBy(x => x.RoomClass.NightlyRate)
+                .Take(count)
+                .ToList();
 
             foreach (var item in roomWithBestDiscountPerHotel)
             {
-                item.RoomClass.Discounts = new List<Discount> { item.ActiveDiscount };
+                if (item.ActiveDiscount != null) 
+                {
+                    item.RoomClass.Discounts = new List<Discount> { item.ActiveDiscount };
+                }
+                else
+                {
+                    item.RoomClass.Discounts = new List<Discount>();
+                }
             }
 
             return roomWithBestDiscountPerHotel.Select(x => x.RoomClass);
