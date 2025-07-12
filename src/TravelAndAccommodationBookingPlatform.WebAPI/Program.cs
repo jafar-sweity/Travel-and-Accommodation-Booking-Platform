@@ -3,6 +3,7 @@ using Amazon.S3;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
+using TravelAndAccommodationBookingPlatform.Infrastructure.DependencyInjection;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +33,7 @@ builder.Services.AddSingleton<IAmazonS3>(sp =>
     return new AmazonS3Client(credentials, s3Config);
 });
 
+builder.Services.AddApplication().AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
