@@ -2,9 +2,11 @@
 using Amazon.S3;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using TravelAndAccommodationBookingPlatform.Application.DependencyInjection;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
 using TravelAndAccommodationBookingPlatform.Infrastructure.DependencyInjection;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Services;
+using TravelAndAccommodationBookingPlatform.WebAPI.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,18 +35,25 @@ builder.Services.AddSingleton<IAmazonS3>(sp =>
     return new AmazonS3Client(credentials, s3Config);
 });
 
-builder.Services.AddApplication().AddInfrastructure(builder.Configuration);
-
+builder.Services.AddWebApi().AddApplication().AddInfrastructure(builder.Configuration);
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+app.UseExceptionHandler();
+
+app.UseSwagger();
+
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TravelAndAccommodationBookingPlatform v1");
+    c.RoutePrefix = "swagger"; // Optional: default is "swagger"
+});
 
 app.UseHttpsRedirection();
 
-app.MapControllers();
+app.UseAuthentication();
+
+app.UseAuthorization();
+
+app.MapControllers().RequireRateLimiting("FixedWindowPolicy");
 
 app.Run();
