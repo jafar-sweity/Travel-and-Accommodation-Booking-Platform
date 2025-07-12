@@ -5,6 +5,7 @@ using TravelAndAccommodationBookingPlatform.Core.Interfaces.Auth;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Services;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Services.Authentication;
+using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 using TravelAndAccommodationBookingPlatform.Core.Services.Authentication;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Auth;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
@@ -27,29 +28,31 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.DependencyInjecti
             return services;
         }
 
-        private static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration config)
+        private static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(config.GetConnectionString("SqlServer")));
+            {
+                options.UseSqlServer(configuration.GetConnectionString("SqlServer"),
+                    optionsBuilder => optionsBuilder.EnableRetryOnFailure(3));
+            });
 
             return services;
         }
 
-
-
         private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IBookingRepository, BookingRepository>();
-            services.AddScoped<ICityRepository, CityRepository>();
-            services.AddScoped<IDiscountRepository, DiscountRepository>();
-            services.AddScoped<IHotelRepository, HotelRepository>();
-            services.AddScoped<IImageRepository, ImageRepository>();
-            services.AddScoped<IOwnerRepository, OwnerRepository>();
-            services.AddScoped<IRoomRepository, RoomRepository>();
-            services.AddScoped<IRoomClassRepository, RoomClassRepository>();
-            services.AddScoped<IReviewRepository, ReviewRepository>();
-            services.AddScoped<IRoleRepository, RoleRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IBookingRepository, BookingRepository>()
+              .AddScoped<ICityRepository, CityRepository>()
+              .AddScoped<IDiscountRepository, DiscountRepository>()
+              .AddScoped<IHotelRepository, HotelRepository>()
+              .AddScoped<IImageRepository, ImageRepository>()
+              .AddScoped<IOwnerRepository, OwnerRepository>()
+              .AddScoped<IReviewRepository, ReviewRepository>()
+              .AddScoped<IRoleRepository, RoleRepository>()
+              .AddScoped<IRoomClassRepository, RoomClassRepository>()
+              .AddScoped<IRoomRepository, RoomRepository>()
+              .AddScoped<IUserRepository, UserRepository>();
+
             return services;
         }
 
@@ -59,11 +62,14 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.DependencyInjecti
             return services;
         }
 
-        private static IServiceCollection AddServices(this IServiceCollection services)
+        public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddScoped<ICurrentUserService, CurrentUserService>();
-            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IPdfGeneratorService, PdfGeneratorService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
             services.AddScoped<IImageService, ImageService>();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddTransient<IEmailService, EmailService>();
+
             return services;
         }
     }
