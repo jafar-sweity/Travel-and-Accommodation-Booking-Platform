@@ -52,27 +52,38 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
-            var mostVisitedCities = await _context.Bookings
-               .GroupBy(b => b.Hotel.CityId)
-               .Select(g => new
-               {
-                   CityId = g.Key,
-                   VisitCount = g.Count()
-               })
-               .OrderByDescending(g => g.VisitCount)
-               .Take(count)
-               .Join(
-                   _context.Cities
-                       .Include(c => c.Hotels)
-                       .Include(c => c.SmallPreview)
-                       .AsNoTracking(),
-                   g => g.CityId,
-                   c => c.Id,
-                   (g, c) => c
-               )
-               .ToListAsync();
+            var mostVisitedCitiesQuery =
+               from booking in _context.Bookings
+               group booking by booking.Hotel.CityId into grouped
+               orderby grouped.Count() descending
+               select new { CityId = grouped.Key, VisitCount = grouped.Count() };
 
-            return mostVisitedCities;
+            var mostVisitedCitiesWithThumbnails = await mostVisitedCitiesQuery
+                .Take(count)
+                .Join(
+                    _context.Cities.AsNoTracking(),
+                    g => g.CityId,
+                    c => c.Id,
+                    (g, c) => new { City = c, g.VisitCount }
+                )
+                .GroupJoin(
+                    _context.Images.AsNoTracking(),
+                    cityWithVisit => cityWithVisit.City.Id,
+                    img => img.EntityId,
+                    (cityWithVisit, images) => new
+                    {
+                        City = cityWithVisit.City,
+                        VisitCount = cityWithVisit.VisitCount,
+                        SmallPreview = images.FirstOrDefault()
+                    }
+                )
+                .ToListAsync();
+
+            return mostVisitedCitiesWithThumbnails.Select(c =>
+            {
+                c.City.SmallPreview = c.SmallPreview;
+                return c.City;
+            });
 
         }
     }
