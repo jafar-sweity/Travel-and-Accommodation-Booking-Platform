@@ -15,10 +15,11 @@ namespace TravelAndAccommodationBookingPlatform.Application.Profiles
                 .ForMember(dest => dest.HotelName, opt => opt.MapFrom(src => src.Hotel.Name))
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.TotalPrice, opt => opt.MapFrom(src => src.TotalPrice))
-                .ForMember(dest => dest.CheckInDate, opt => opt.MapFrom(src => src.CheckInDate))
-                .ForMember(dest => dest.CheckOutDate, opt => opt.MapFrom(src => src.CheckOutDate))
-                .ForMember(dest => dest.BookingDate, opt => opt.MapFrom(src => src.BookingDate))
+                .ForMember(dest => dest.CheckInDate, opt => opt.MapFrom(src => src.CheckInDate.ToDateTime(TimeOnly.MinValue)))
+                .ForMember(dest => dest.CheckOutDate, opt => opt.MapFrom(src => src.CheckOutDate.ToDateTime(TimeOnly.MinValue)))
+                .ForMember(dest => dest.BookingDate, opt => opt.MapFrom(src => src.BookingDate.ToDateTime(TimeOnly.MinValue)))
                 .ForMember(dest => dest.GuestRemarks, opt => opt.MapFrom(src => src.GuestRemarks));
+
 
             CreateMap<PaginatedResult<Booking>, PaginatedResult<BookingResponseDTO>>();
 
