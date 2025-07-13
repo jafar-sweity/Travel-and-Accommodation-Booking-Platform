@@ -1,4 +1,5 @@
 ﻿using MailKit.Net.Smtp;
+using MailKit.Security;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Services;
@@ -57,14 +58,15 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Services
             using var client = new SmtpClient();
             try
             {
-                await client.ConnectAsync(_smtpServer, _port, true);
+                client.Timeout = 10000; // optional
+                await client.ConnectAsync(_smtpServer, _port, SecureSocketOptions.StartTls); // 587 + TLS
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
                 await client.AuthenticateAsync(_userName, _password);
-
                 await client.SendAsync(mailMessage);
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Email sending failed: " + ex.Message);
                 throw;
             }
             finally
