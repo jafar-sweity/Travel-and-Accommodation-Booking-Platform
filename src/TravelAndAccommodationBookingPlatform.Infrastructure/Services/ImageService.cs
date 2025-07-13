@@ -38,7 +38,6 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Services
                 Key = fileName,
                 BucketName = _s3Settings.BucketName,
                 ContentType = image.ContentType,
-                CannedACL = S3CannedACL.PublicRead
             };
 
             var transferUtility = new TransferUtility(_s3Client);
