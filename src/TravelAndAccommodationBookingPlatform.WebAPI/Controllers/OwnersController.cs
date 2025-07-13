@@ -37,7 +37,7 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
             var result = await _mediator.Send(query);
             Response.Headers["X-Pagination"] = JsonSerializer.Serialize(result.PaginationMetadata);
             return Ok(result.Items);
-        } 
+        }
 
         [HttpPut("{id:guid}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -62,7 +62,7 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
         public async Task<ActionResult<OwnerResponseDto>> GetOwner(Guid id)
         {
             var query = new GetOwnerByIdQuery { Id = id };
-            var result = await _mediator.Send(query); 
+            var result = await _mediator.Send(query);
             return Ok(result);
         }
 
