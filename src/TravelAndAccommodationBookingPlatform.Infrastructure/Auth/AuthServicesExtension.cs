@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Auth;
+using TravelAndAccommodationBookingPlatform.Core.Services.Authentication;
+using TravelAndAccommodationBookingPlatform.Infrastructure.Services;
 
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.Auth
@@ -13,6 +15,8 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Auth
         public static IServiceCollection AddAuthServices(
             this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddHttpContextAccessor();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
             var jwtSection = configuration.GetSection("Jwt");
             var key = jwtSection["Key"];
             var issuer = jwtSection["Issuer"];

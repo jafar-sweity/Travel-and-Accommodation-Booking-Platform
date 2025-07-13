@@ -17,7 +17,8 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
 });
-
+var isMatch = BCrypt.Net.BCrypt.Verify("Admin@2025", "$2a$11$V81dxDMCAqF.omrOmEIkHuig9m/sLcytTulPj5QlORsUV.8SlFXmS");
+Console.WriteLine(isMatch);
 builder.Services.Configure<AWSS3Settings>(
     builder.Configuration.GetSection("AWSS3Settings"));
 
