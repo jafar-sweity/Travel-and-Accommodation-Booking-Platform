@@ -2,6 +2,7 @@
 using Amazon.S3;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Options;
+using QuestPDF.Infrastructure;
 using System.Threading.RateLimiting;
 using TravelAndAccommodationBookingPlatform.Application.DependencyInjection;
 using TravelAndAccommodationBookingPlatform.Infrastructure.DependencyInjection;
@@ -13,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+QuestPDF.Settings.License = LicenseType.Community;
 
 // AWS S3 Configuration
 builder.Services.Configure<AWSS3Settings>(
