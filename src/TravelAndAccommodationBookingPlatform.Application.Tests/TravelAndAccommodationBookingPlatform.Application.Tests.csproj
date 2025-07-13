@@ -30,7 +30,6 @@
     <Folder Include="Commands\Bookings\" />
     <Folder Include="Commands\Hotles\" />
     <Folder Include="Commands\Cities\" />
-    <Folder Include="Queries\Cities\" />
   </ItemGroup>
 
 </Project>
