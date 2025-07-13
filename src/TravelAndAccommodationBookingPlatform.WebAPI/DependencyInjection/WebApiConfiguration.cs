@@ -1,24 +1,25 @@
-﻿namespace TravelAndAccommodationBookingPlatform.WebAPI.DependencyInjection
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace TravelAndAccommodationBookingPlatform.WebAPI.DependencyInjection
 {
     public static class WebApiConfiguration
     {
         public static IServiceCollection AddWebApi(this IServiceCollection services)
         {
             services.AddHttpContextAccessor();
-            //services.AddApiVersioningSetup();
             services.AddSwaggerSetup();
             services.AddProblemDetails();
-            //services.AddControllers(options => options.Filters.Add<ExecutionLoggerFilter>()).AddJsonOptions(options =>
-            //{
-            //    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-            //    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-            //});
 
-            //services.AddDateOnlyTimeOnlyStringConverters();
+            // Add controllers with JSON configuration
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            });
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            //services.AddFluentValidationSetup();
-            services.AddAuthentication();
-            services.AddAuthorization();
 
             return services;
         }

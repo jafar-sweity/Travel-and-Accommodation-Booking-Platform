@@ -34,7 +34,7 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
             var query = _mapper.Map<GetBookingQuery>(getBookingsRequestDto);
             var bookings = await _mediator.Send(query);
             Response.Headers["X-Pagination"] = JsonSerializer.Serialize(bookings.PaginationMetadata);
-            return Ok(_mapper.Map<IEnumerable<BookingResponseDTO>>(bookings));
+            return Ok(bookings.Items);
         }
 
         [HttpGet("{id:guid}")]
