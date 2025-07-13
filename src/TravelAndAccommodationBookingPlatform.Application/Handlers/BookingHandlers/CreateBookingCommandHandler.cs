@@ -48,7 +48,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.BookingHand
             _mapper = mapper;
         }
 
-        async Task<BookingResponseDTO> IRequestHandler<CreateBookingCommand, BookingResponseDTO>.Handle(CreateBookingCommand request, CancellationToken cancellationToken)
+        public async Task<BookingResponseDTO> Handle(CreateBookingCommand request, CancellationToken cancellationToken)
         {
             var userId = _currentUserService.GetUserId();
             var userRole = _currentUserService.GetUserRole();
