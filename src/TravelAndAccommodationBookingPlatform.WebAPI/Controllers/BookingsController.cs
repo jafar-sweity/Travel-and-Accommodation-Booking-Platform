@@ -74,9 +74,8 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
         public async Task<IActionResult> CreateBooking([FromBody] BookingCreationRequestDto bookingCreationRequestDto)
         {
             var command = _mapper.Map<CreateBookingCommand>(bookingCreationRequestDto);
-
-            var booking = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetBooking), new { id = booking.Id }, bookingCreationRequestDto);
+            var createdBooking = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetBooking), new { id = createdBooking.Id }, createdBooking);
         }
 
         [HttpDelete("{id:guid}")]
