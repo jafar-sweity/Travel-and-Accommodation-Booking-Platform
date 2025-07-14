@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using TravelAndAccommodationBookingPlatform.Application.Commands.CityCommands;
+using TravelAndAccommodationBookingPlatform.Application.Commands.HotelCommands;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Images;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Profiles
@@ -10,6 +11,9 @@ namespace TravelAndAccommodationBookingPlatform.Application.Profiles
         {
             CreateMap<ImageCreationRequestDto, AddCitySmallPreviewImageCommand>()
                 .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Image));
+
+            CreateMap<ImageCreationRequestDto, AddHotelThumbnailCommand>();
+
         }
     }
 }

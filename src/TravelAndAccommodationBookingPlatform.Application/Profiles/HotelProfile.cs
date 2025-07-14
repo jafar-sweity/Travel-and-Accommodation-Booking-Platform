@@ -38,7 +38,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Profiles
             .ForMember(dest => dest.DiscountEndDate, opt => opt.MapFrom(src => src.Discounts.First().EndDate))
             .ForMember(dest => dest.ReviewsRating, opt => opt.MapFrom(src => src.Hotel.ReviewsRating))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Hotel.BriefDescription))
-            .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => src.Hotel.SmallPreview == null ? null : src.Hotel.SmallPreview.Url));
+            .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => src.Hotel.SmallPreview.Url ?? null));
         }
     }
 }
