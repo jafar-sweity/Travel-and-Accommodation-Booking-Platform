@@ -438,7 +438,7 @@ We adopted several modern design patterns such as **CQRS**, **MediatR**, and **D
 
 ### 📌 Overview Diagram
 
-![Architecture Overview](./Assets/Architecture_Used.png)
+![Architecture Overview](./assets/Architecture_Used.png)
 
 This diagram illustrates the high-level architecture of the platform. Each layer has its own distinct responsibility and does not depend on the infrastructure or external tools directly.
 
@@ -482,7 +482,7 @@ This diagram illustrates the high-level architecture of the platform. Each layer
 
 ### 📦 Project Features Diagram
 
-![Project Features](./Assets/ProjectFeatures.png)
+![Project Features](./assets/ProjectFeatures.png)
 
 This diagram highlights the key features implemented in the system, including:
 
@@ -500,7 +500,7 @@ This diagram highlights the key features implemented in the system, including:
 
 For a detailed view of all functional and non-functional requirements, refer to:
 
-👉 [`ProjectRequirements.md`](./Assets/ProjectRequirements.md)
+👉 [`ProjectRequirements.md`](./assets/ProjectRequirements.md)
 
 It includes:
 
