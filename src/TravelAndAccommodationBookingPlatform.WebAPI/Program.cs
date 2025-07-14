@@ -3,6 +3,7 @@ using Amazon.S3;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Options;
 using QuestPDF.Infrastructure;
+using Serilog;
 using System.Threading.RateLimiting;
 using TravelAndAccommodationBookingPlatform.Application.DependencyInjection;
 using TravelAndAccommodationBookingPlatform.Infrastructure.DependencyInjection;
@@ -10,6 +11,15 @@ using TravelAndAccommodationBookingPlatform.Infrastructure.Services;
 using TravelAndAccommodationBookingPlatform.WebAPI.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -62,7 +72,6 @@ if (app.Environment.IsDevelopment())
 app.UseExceptionHandler();
 app.UseHttpsRedirection();
 
-// CRITICAL: Authentication must come before Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
