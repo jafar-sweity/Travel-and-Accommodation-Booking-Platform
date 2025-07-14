@@ -32,7 +32,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.CityHandler
                 throw new NotFoundException(CityMessages.CityNotFound);
 
             _mapper.Map(request, existingCity);
-            await _cityRepository.UpdateAsync(existingCity);
             await _unitOfWork.SaveChangesAsync();
         }
     }
