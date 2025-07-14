@@ -4,6 +4,7 @@ using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
+using TravelAndAccommodationBookingPlatform.Infrastructure.Extensions;
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 {
@@ -54,30 +55,26 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 
         public async Task<PaginatedResult<Review>> GetReviewsAsync(PaginatedQuery<Review> query)
         {
-            IQueryable<Review> reviewsQuery = _context.Reviews
-                            .Include(r => r.Guest)
-                            .Include(r => r.Hotel);
+            ArgumentNullException.ThrowIfNull(query);
+
+            var queryable = _context.Reviews.AsQueryable();
 
             if (query.FilterExpression != null)
-            {
-                reviewsQuery = reviewsQuery.Where(query.FilterExpression);
-            }
+                queryable = queryable.Where(query.FilterExpression);
 
             if (!string.IsNullOrEmpty(query.SortByColumn))
-            {
-                var sortDirection = query.SortDirection == Core.Enums.OrderDirection.Ascending ? "asc" : "desc";
-                reviewsQuery = reviewsQuery.OrderBy($"{query.SortByColumn} {sortDirection}");
-            }
+                queryable = queryable.Sort(query.SortByColumn, query.SortDirection);
 
-            var totalCount = await reviewsQuery.CountAsync();
+            var paginationMetadata = await queryable.GetPaginationMetadataAsync(query.PageNumber, query.PageSize);
 
-            var pagedReviews = await reviewsQuery
-                .Skip((query.PageNumber - 1) * query.PageSize)
-                .Take(query.PageSize)
+            var pagedItems = await queryable
+                .GetPage(query.PageNumber, query.PageSize)
+                .Include(r => r.Guest)
+                .Include(r => r.Hotel)
+                .AsNoTracking()
                 .ToListAsync();
 
-            var metadata = new PaginationMetadata(totalCount, query.PageNumber, query.PageSize);
-            return new PaginatedResult<Review>(pagedReviews, metadata);
+            return new PaginatedResult<Review>(pagedItems, paginationMetadata);
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
-using TravelAndAccommodationBookingPlatform.Core.Enums;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
+using TravelAndAccommodationBookingPlatform.Infrastructure.Extensions;
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 {
@@ -27,29 +27,17 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 
         public async Task<PaginatedResult<Booking>> GetBookingsAsync(PaginatedQuery<Booking> query)
         {
-            IQueryable<Booking> filteredQuery = _context.Bookings.Include(b => b.Hotel);
+            var queryable = _context.Bookings.Include(b => b.Hotel).AsQueryable();
 
             if (query.FilterExpression != null)
-            {
-                filteredQuery = filteredQuery.Where(query.FilterExpression);
-            }
+                queryable = queryable.Where(query.FilterExpression);
 
-            if (!string.IsNullOrEmpty(query.SortByColumn))
-            {
-                filteredQuery = filteredQuery.OrderBy(
-                    $"{query.SortByColumn} {(query.SortDirection == OrderDirection.Ascending ? "asc" : "desc")}");
-            }
+            queryable = queryable.Sort(query.SortByColumn, query.SortDirection);
 
-            var totalItemCount = await filteredQuery.CountAsync();
+            var paginationMetadata = await queryable.GetPaginationMetadataAsync(query.PageNumber, query.PageSize);
+            var pagedItems = await queryable.GetPage(query.PageNumber, query.PageSize).AsNoTracking().ToListAsync();
 
-            var skip = (query.PageNumber - 1) * query.PageSize;
-            var bookingsPage =
-                await filteredQuery.Skip(skip).Take(query.PageSize).ToListAsync();
-
-            var metadata =
-                new PaginationMetadata(totalItemCount, query.PageNumber, query.PageSize);
-
-            return new PaginatedResult<Booking>(bookingsPage, metadata);
+            return new PaginatedResult<Booking>(pagedItems, paginationMetadata);
         }
 
         public async Task<IEnumerable<Booking>> GetRecentBookingsByGuestIdAsync(Guid guestId, int count)

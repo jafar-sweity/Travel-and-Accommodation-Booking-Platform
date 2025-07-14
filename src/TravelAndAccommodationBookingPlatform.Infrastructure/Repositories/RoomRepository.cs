@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
-using TravelAndAccommodationBookingPlatform.Core.Enums;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
+using TravelAndAccommodationBookingPlatform.Infrastructure.Extensions;
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 {
@@ -30,68 +30,54 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
         {
             ArgumentNullException.ThrowIfNull(query);
 
-            IQueryable<Room> roomQuery = _context.Rooms.Include(r => r.RoomClass);
-
-            if (query.FilterExpression != null)
-                roomQuery = roomQuery.Where(query.FilterExpression);
-
-            if (!string.IsNullOrEmpty(query.SortByColumn))
-            {
-                string direction = query.SortDirection == Core.Enums.OrderDirection.Ascending ? "asc" : "desc";
-                roomQuery = roomQuery.OrderBy($"{query.SortByColumn} {direction}");
-            }
-
-            var total = await roomQuery.CountAsync();
-            var rooms = await roomQuery
-                .Skip((query.PageNumber - 1) * query.PageSize)
-                .Take(query.PageSize)
-                .ToListAsync();
-
-            var metadata = new PaginationMetadata(total, query.PageNumber, query.PageSize);
-            return new PaginatedResult<Room>(rooms, metadata);
-        }
-
-        public async Task<PaginatedResult<RoomManagementDto>> GetRoomsForManagementAsync(PaginatedQuery<Room> query)
-        {
-            ArgumentNullException.ThrowIfNull(query);
-            var currentDate = DateOnly.FromDateTime(DateTime.UtcNow);
-
-            IQueryable<Room> queryable = _context.Rooms
-                .Include(r => r.RoomClass)
-                .ThenInclude(rc => rc.Hotel)
-                .AsQueryable();
+            var queryable = _context.Rooms.AsQueryable();
 
             if (query.FilterExpression != null)
                 queryable = queryable.Where(query.FilterExpression);
 
             if (!string.IsNullOrEmpty(query.SortByColumn))
-            {
-                if (query.SortByColumn == "Number" && query.SortDirection == OrderDirection.Ascending)
-                    queryable = queryable.OrderBy(r => r.Number);
-                else if (query.SortByColumn == "Number" && query.SortDirection == OrderDirection.Descending)
-                    queryable = queryable.OrderByDescending(r => r.Number);
-            }
+                queryable = queryable.Sort(query.SortByColumn, query.SortDirection);
 
-            int totalItemCount = await queryable.CountAsync();
+            var paginationMetadata = await queryable.GetPaginationMetadataAsync(query.PageNumber, query.PageSize);
 
-            var roomsPage = await queryable
-                .Skip((query.PageNumber - 1) * query.PageSize)
-                .Take(query.PageSize)
+            var pagedItems = await queryable
+                .GetPage(query.PageNumber, query.PageSize)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return new PaginatedResult<Room>(pagedItems, paginationMetadata);
+        }
+
+        public async Task<PaginatedResult<RoomManagementDto>> GetRoomsForManagementAsync(PaginatedQuery<Room> query)
+        {
+            ArgumentNullException.ThrowIfNull(query);
+            var currentDate = DateOnly.FromDateTime(DateTime.Now);
+
+            var queryable = _context.Rooms.AsQueryable();
+
+            if (query.FilterExpression != null)
+                queryable = queryable.Where(query.FilterExpression);
+
+            if (!string.IsNullOrEmpty(query.SortByColumn))
+                queryable = queryable.Sort(query.SortByColumn, query.SortDirection);
+
+            var paginationMetadata = await queryable.GetPaginationMetadataAsync(query.PageNumber, query.PageSize);
+
+            var pagedItems = await queryable
+                .GetPage(query.PageNumber, query.PageSize)
                 .Select(room => new RoomManagementDto
                 {
                     Id = room.Id,
                     RoomClassId = room.RoomClassId,
-                    IsAvailable = !room.Bookings.Any(b =>
-                        b.CheckInDate <= currentDate && b.CheckOutDate >= currentDate),
+                    IsAvailable = !room.Bookings.Any(b => b.CheckInDate >= currentDate && b.CheckOutDate <= currentDate),
                     Number = room.Number,
                     CreatedAt = room.CreatedAt,
                     ModifiedAt = room.UpdatedAt
                 })
+                .AsNoTracking()
                 .ToListAsync();
 
-            var metadata = new PaginationMetadata(totalItemCount, query.PageNumber, query.PageSize);
-
-            return new PaginatedResult<RoomManagementDto>(roomsPage, metadata);
+            return new PaginatedResult<RoomManagementDto>(pagedItems, paginationMetadata);
         }
 
         public async Task<Room?> GetRoomWithRoomClassByIdAsync(Guid roomId)

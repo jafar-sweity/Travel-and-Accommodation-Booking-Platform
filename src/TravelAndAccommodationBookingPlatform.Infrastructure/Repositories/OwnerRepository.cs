@@ -4,6 +4,7 @@ using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
+using TravelAndAccommodationBookingPlatform.Infrastructure.Extensions;
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 {
@@ -18,25 +19,24 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 
         public async Task<PaginatedResult<Owner>> GetOwnersAsync(PaginatedQuery<Owner> query)
         {
-            IQueryable<Owner> filteredQuery = _context.Owners;
+            ArgumentNullException.ThrowIfNull(query);
+
+            var queryable = _context.Owners.AsQueryable();
 
             if (query.FilterExpression != null)
-                filteredQuery = filteredQuery.Where(query.FilterExpression);
+                queryable = queryable.Where(query.FilterExpression);
 
             if (!string.IsNullOrEmpty(query.SortByColumn))
-            {
-                var sortDirection = query.SortDirection == Core.Enums.OrderDirection.Ascending ? "asc" : "desc";
-                filteredQuery = filteredQuery.OrderBy($"{query.SortByColumn} {sortDirection}");
-            }
+                queryable = queryable.Sort(query.SortByColumn, query.SortDirection);
 
-            var totalItemCount = await filteredQuery.CountAsync();
+            var paginationMetadata = await queryable.GetPaginationMetadataAsync(query.PageNumber, query.PageSize);
 
-            var skip = (query.PageNumber - 1) * query.PageSize;
-            var ownersPage = await filteredQuery.Skip(skip).Take(query.PageSize).ToListAsync();
+            var pagedItems = await queryable
+                .GetPage(query.PageNumber, query.PageSize)
+                .AsNoTracking()
+                .ToListAsync();
 
-            var metadata = new PaginationMetadata(totalItemCount, query.PageNumber, query.PageSize);
-
-            return new PaginatedResult<Owner>(ownersPage, metadata);
+            return new PaginatedResult<Owner>(pagedItems, paginationMetadata);
         }
     }
 }

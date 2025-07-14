@@ -6,6 +6,7 @@ using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
+using TravelAndAccommodationBookingPlatform.Infrastructure.Extensions;
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 {
@@ -31,13 +32,12 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
                 queryable = queryable.Where(query.FilterExpression);
 
             if (!string.IsNullOrEmpty(query.SortByColumn))
-                queryable = queryable.OrderBy($"{query.SortByColumn} {(query.SortDirection == Core.Enums.OrderDirection.Ascending ? "asc" : "desc")}");
+                queryable = queryable.Sort(query.SortByColumn, query.SortDirection);
 
-            var totalCount = await queryable.CountAsync();
+            var paginationMetadata = await queryable.GetPaginationMetadataAsync(query.PageNumber, query.PageSize);
 
             var pagedItems = await queryable
-                .Skip((query.PageNumber - 1) * query.PageSize)
-                .Take(query.PageSize)
+                .GetPage(query.PageNumber, query.PageSize)
                 .Select(hotel => new HotelSearchDto
                 {
                     Id = hotel.Id,
@@ -45,12 +45,13 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
                     StarRating = hotel.StarRating,
                     ReviewsRating = hotel.ReviewsRating,
                     NightlyRate = hotel.RoomClasses.Min(rc => rc.NightlyRate),
+                    CityName = hotel.City.Name,
                     Description = hotel.BriefDescription
                 })
                 .AsNoTracking()
                 .ToListAsync();
 
-            return new PaginatedResult<HotelSearchDto>(pagedItems, new PaginationMetadata(totalCount, query.PageNumber, query.PageSize));
+            return new PaginatedResult<HotelSearchDto>(pagedItems, paginationMetadata);
         }
 
         public async Task<PaginatedResult<HotelManagementDto>> GetHotelsForManagementPageAsync(PaginatedQuery<Hotel> query)
@@ -60,20 +61,18 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
             var queryable = _context.Hotels
                 .Include(h => h.City)
                 .Include(h => h.Owner)
-                .Include(h => h.RoomClasses)
                 .AsQueryable();
 
             if (query.FilterExpression != null)
                 queryable = queryable.Where(query.FilterExpression);
 
             if (!string.IsNullOrEmpty(query.SortByColumn))
-                queryable = queryable.OrderBy($"{query.SortByColumn} {(query.SortDirection == Core.Enums.OrderDirection.Ascending ? "asc" : "desc")}");
+                queryable = queryable.Sort(query.SortByColumn, query.SortDirection);
 
-            var totalCount = await queryable.CountAsync();
+            var paginationMetadata = await queryable.GetPaginationMetadataAsync(query.PageNumber, query.PageSize);
 
             var pagedItems = await queryable
-                .Skip((query.PageNumber - 1) * query.PageSize)
-                .Take(query.PageSize)
+                .GetPage(query.PageNumber, query.PageSize)
                 .Select(hotel => new HotelManagementDto
                 {
                     Id = hotel.Id,
@@ -87,7 +86,7 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
                 .AsNoTracking()
                 .ToListAsync();
 
-            return new PaginatedResult<HotelManagementDto>(pagedItems, new PaginationMetadata(totalCount, query.PageNumber, query.PageSize));
+            return new PaginatedResult<HotelManagementDto>(pagedItems, paginationMetadata);
         }
 
         public async Task UpdateHotelRatingAsync(Guid id, double newRating)

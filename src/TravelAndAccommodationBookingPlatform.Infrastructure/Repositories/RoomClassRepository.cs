@@ -5,6 +5,7 @@ using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
+using TravelAndAccommodationBookingPlatform.Infrastructure.Extensions;
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 {
@@ -19,40 +20,32 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 
         public async Task<PaginatedResult<RoomClass>> GetRoomClassesAsync(PaginatedQuery<RoomClass> query)
         {
+            if (query == null) throw new ArgumentNullException(nameof(query));
+
             var currentDateTime = DateTime.UtcNow;
 
             var roomClassesQuery = _context.RoomClasses
                 .Include(rc => rc.Discounts.Where(d => currentDateTime >= d.StartDate && currentDateTime < d.EndDate))
-                .AsNoTracking();
+                .AsNoTracking()
+                .Select(rc => new
+                {
+                    RoomClass = rc,
+                    Gallery = _context.Images.Where(img => img.EntityId == rc.Id).ToList()
+                });
 
-            if (!string.IsNullOrWhiteSpace(query.SortByColumn))
-            {
-                roomClassesQuery = roomClassesQuery.OrderBy(
-                    $"{query.SortByColumn} {(query.SortDirection == Core.Enums.OrderDirection.Ascending ? "asc" : "desc")}");
-            }
+            if (!string.IsNullOrEmpty(query.SortByColumn))
+                roomClassesQuery = roomClassesQuery.Sort(query.SortByColumn, query.SortDirection);
 
-            // Fetch paged room classes
-            var pagedRoomClasses = await roomClassesQuery
-                .Skip((query.PageNumber - 1) * query.PageSize)
-                .Take(query.PageSize)
+            var paginationMetadata = await roomClassesQuery.GetPaginationMetadataAsync(query.PageNumber, query.PageSize);
+
+            var paginatedRoomClasses = await roomClassesQuery
+                .GetPage(query.PageNumber, query.PageSize)
                 .ToListAsync();
 
-            // Load galleries separately
-            var roomClassIds = pagedRoomClasses.Select(rc => rc.Id).ToList();
-            var galleries = await _context.Images
-                .Where(img => roomClassIds.Contains(img.EntityId))
-                .ToListAsync();
+            foreach (var item in paginatedRoomClasses)
+                item.RoomClass.Gallery = item.Gallery;
 
-            // Attach galleries
-            foreach (var rc in pagedRoomClasses)
-            {
-                rc.Gallery = galleries.Where(img => img.EntityId == rc.Id).ToList();
-            }
-
-            // Get total count
-            var totalCount = await roomClassesQuery.CountAsync();
-
-            return new PaginatedResult<RoomClass>(pagedRoomClasses, new PaginationMetadata(totalCount, query.PageNumber, query.PageSize));
+            return new PaginatedResult<RoomClass>(paginatedRoomClasses.Select(x => x.RoomClass), paginationMetadata);
         }
 
         public async Task<bool> ExistsAsync(Expression<Func<RoomClass, bool>> predicate)

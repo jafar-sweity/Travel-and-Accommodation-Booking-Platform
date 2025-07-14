@@ -4,6 +4,7 @@ using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
+using TravelAndAccommodationBookingPlatform.Infrastructure.Extensions;
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 {
@@ -16,36 +17,36 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<PaginatedResult<CityManagementDto>> GetCitiesForAdminAsync(PaginatedQuery<City> PaginatedQuery)
+        public async Task<PaginatedResult<CityManagementDto>> GetCitiesForAdminAsync(PaginatedQuery<City> query)
         {
-            ArgumentNullException.ThrowIfNull(PaginatedQuery);
-            IQueryable<City> filteredQuery = _context.Cities.Include(c => c.Hotels);
+            ArgumentNullException.ThrowIfNull(query);
 
-            if (!string.IsNullOrEmpty(PaginatedQuery.SortByColumn))
-            {
-                filteredQuery = filteredQuery.OrderBy($"{PaginatedQuery.SortByColumn} {(PaginatedQuery.SortDirection == Core.Enums.OrderDirection.Ascending ? "asc" : "desc")}");
-            }
-            var totalItemCount = await filteredQuery.CountAsync();
+            var queryable = _context.Cities.AsQueryable();
 
-            var skip = (PaginatedQuery.PageNumber - 1) * PaginatedQuery.PageSize;
-            var citiesPage = await filteredQuery
-                .Skip(skip)
-                .Take(PaginatedQuery.PageSize)
-                .Select(c => new CityManagementDto
+            if (query.FilterExpression != null)
+                queryable = queryable.Where(query.FilterExpression);
+
+            if (!string.IsNullOrEmpty(query.SortByColumn))
+                queryable = queryable.Sort(query.SortByColumn, query.SortDirection);
+
+            var paginationMetadata = await queryable.GetPaginationMetadataAsync(query.PageNumber, query.PageSize);
+
+            var pagedItems = await queryable
+                .GetPage(query.PageNumber, query.PageSize)
+                .Select(city => new CityManagementDto
                 {
-                    Id = c.Id,
-                    Name = c.Name,
-                    Country = c.Country,
-                    Region = c.Region,
-                    PostOffice = c.PostOffice,
-                    TotalHotels = c.Hotels.Count,
-                    CreatedAt = c.CreatedAt,
-                    UpdatedAt = c.UpdatedAt
+                    Id = city.Id,
+                    Name = city.Name,
+                    Country = city.Country,
+                    PostOffice = city.PostOffice,
+                    Region = city.Region,
+                    TotalHotels = city.Hotels.Count(),
+                    CreatedAt = city.CreatedAt,
+                    UpdatedAt = city.UpdatedAt
                 })
-            .ToListAsync();
-            var metadata = new PaginationMetadata(totalItemCount, PaginatedQuery.PageNumber, PaginatedQuery.PageSize);
+                .ToListAsync();
 
-            return new PaginatedResult<CityManagementDto>(citiesPage, metadata);
+            return new PaginatedResult<CityManagementDto>(pagedItems, paginationMetadata);
         }
 
         public async Task<IEnumerable<City>> GetTopMostVisitedCitiesAsync(int count)

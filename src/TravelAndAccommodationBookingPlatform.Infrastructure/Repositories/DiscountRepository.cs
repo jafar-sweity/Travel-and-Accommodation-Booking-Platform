@@ -4,6 +4,7 @@ using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
+using TravelAndAccommodationBookingPlatform.Infrastructure.Extensions;
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 {
@@ -25,26 +26,24 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 
         public async Task<PaginatedResult<Discount>> GetDiscountsAsync(PaginatedQuery<Discount> query)
         {
-            IQueryable<Discount> filteredQuery = _context.Discounts;
+            ArgumentNullException.ThrowIfNull(query);
+
+            var queryable = _context.Discounts.AsQueryable();
 
             if (query.FilterExpression != null)
-                filteredQuery = filteredQuery.Where(query.FilterExpression);
+                queryable = queryable.Where(query.FilterExpression);
 
-            if (!string.IsNullOrWhiteSpace(query.SortByColumn))
-            {
-                string sortOrder = query.SortDirection == Core.Enums.OrderDirection.Ascending ? "asc" : "desc";
-                filteredQuery = filteredQuery.OrderBy($"{query.SortByColumn} {sortOrder}");
-            }
+            if (!string.IsNullOrEmpty(query.SortByColumn))
+                queryable = queryable.Sort(query.SortByColumn, query.SortDirection);
 
-            var totalItemCount = await filteredQuery.CountAsync();
+            var paginationMetadata = await queryable.GetPaginationMetadataAsync(query.PageNumber, query.PageSize);
 
-            // Apply pagination
-            var skip = (query.PageNumber - 1) * query.PageSize;
-            var pageData = await filteredQuery.Skip(skip).Take(query.PageSize).ToListAsync();
+            var pagedItems = await queryable
+                .GetPage(query.PageNumber, query.PageSize)
+                .AsNoTracking()
+                .ToListAsync();
 
-            var metadata = new PaginationMetadata(totalItemCount, query.PageNumber, query.PageSize);
-
-            return new PaginatedResult<Discount>(pageData, metadata);
+            return new PaginatedResult<Discount>(pagedItems, paginationMetadata);
         }
     }
 }
