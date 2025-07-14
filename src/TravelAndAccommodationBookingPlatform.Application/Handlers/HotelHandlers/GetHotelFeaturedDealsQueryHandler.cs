@@ -22,6 +22,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.HotelHandle
         {
             if (request.Count <= 0)
                 throw new ArgumentOutOfRangeException(nameof(request.Count), "Count must be greater than zero.");
+
             var featuredDeals = await _roomClassRepository.GetFeaturedRoomsAsync(request.Count);
             return _mapper.Map<IEnumerable<HotelFeaturedDealResponseDto>>(featuredDeals);
         }

@@ -27,7 +27,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.DiscountHan
         public async Task<DiscountResponseDto> Handle(GetDiscountByIdQuery request, CancellationToken cancellationToken)
         {
             var discount = await _discountRepository.GetByIdAsync(request.DiscountId) ?? throw new NotFoundException(DiscountMessages.DiscountNotFound);
-
             var roomClassExists = await _roomClassRepository.ExistsByPredicateAsync(rc => rc.Id == discount.RoomClassId);
 
             if (!roomClassExists)

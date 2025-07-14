@@ -28,7 +28,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.OwnerHandle
             var owner = await _ownerRepository.GetByIdAsync(request.Id) ?? throw new KeyNotFoundException(OwnerMessages.OwnerNotFound);
 
             _mapper.Map(request, owner);
-
             await _ownerRepository.UpdateAsync(owner);
             await _unitOfWork.SaveChangesAsync();
         }

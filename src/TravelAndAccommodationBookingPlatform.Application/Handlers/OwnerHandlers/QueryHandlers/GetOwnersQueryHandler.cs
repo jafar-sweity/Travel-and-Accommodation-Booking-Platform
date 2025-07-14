@@ -28,7 +28,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.OwnerHandle
                ? _ => true : f => f.FirstName.Contains(request.Search) || f.LastName.Contains(request.Search);
 
             var query = new PaginatedQuery<Owner>(filterExpression, request.SortColumn, request.PageNumber, request.PageSize, request.SortDirection);
-
             var owner = await _ownerRepository.GetOwnersAsync(query);
 
             return _mapper.Map<PaginatedResult<OwnerResponseDto>>(owner);

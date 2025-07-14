@@ -11,7 +11,6 @@ using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 using TravelAndAccommodationBookingPlatform.Core.Services.Authentication;
 
-
 namespace TravelAndAccommodationBookingPlatform.Application.Handlers.BookingHandlers
 {
     public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand, BookingResponseDTO>
@@ -75,7 +74,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.BookingHand
                 if (room.RoomClass.HotelId != request.HotelId)
                     throw new RoomsNotInHotelException(RoomMessages.RoomNotFound);
 
-
                 bool isAvailable = await IsRoomAvailableAsync(room, request.CheckInDate, request.CheckOutDate);
                 if (!isAvailable)
                     throw new RoomNotAvailableException(RoomMessages.RoomUnavailable(roomId));
@@ -124,8 +122,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.BookingHand
 
             await _unitOfWork.SaveChangesAsync();
 
-
-
             var pdfBytes = await _pdfGeneratorService.GenerateInvoiceAsync(createdBooking);
 
             var emailRequest = new EmailRequest(
@@ -143,7 +139,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.BookingHand
             );
 
             await _emailService.SendAsync(emailRequest);
-
             return _mapper.Map<BookingResponseDTO>(createdBooking);
         }
 
@@ -171,8 +166,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.BookingHand
 
             return totalPerNight * nights;
         }
-
-
     }
 }
 

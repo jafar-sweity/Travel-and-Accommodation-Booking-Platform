@@ -44,7 +44,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.RoomHandler
             );
 
             var rooms = await _roomRepository.GetRoomsForManagementAsync(query);
-
             return _mapper.Map<PaginatedResult<RoomManagementResponseDto>>(rooms);
         }
     }

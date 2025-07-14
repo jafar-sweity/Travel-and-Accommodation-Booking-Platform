@@ -38,7 +38,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.RoomClassHa
            );
 
             var roomClasses = await _roomClassRepository.GetRoomClassesAsync(query);
-
             var roomClassDtos = _mapper.Map<PaginatedResult<RoomClassManagementResponseDto>>(roomClasses);
 
             return roomClassDtos;

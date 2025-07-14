@@ -42,6 +42,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.ReviewHandl
             }
 
             var hotelExists = await _hotelRepository.ExistsByPredicateAsync(h => h.Id == request.HotelId);
+
             if (!hotelExists)
                 throw new NotFoundException(HotelMessages.HotelNotFound);
 
@@ -53,13 +54,11 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.ReviewHandl
 
             var totalRating = await _reviewRepository.GetHotelRatingAsync(request.HotelId);
             var reviewCount = await _reviewRepository.GetHotelReviewCountAsync(request.HotelId);
-
             totalRating -= review.Rating;
             reviewCount--;
-
             var newRating = reviewCount > 0 ? totalRating / reviewCount : 0;
-            await _hotelRepository.UpdateReviewById(request.HotelId, newRating);
 
+            await _hotelRepository.UpdateReviewById(request.HotelId, newRating);
             await _unitOfWork.SaveChangesAsync();
         }
     }

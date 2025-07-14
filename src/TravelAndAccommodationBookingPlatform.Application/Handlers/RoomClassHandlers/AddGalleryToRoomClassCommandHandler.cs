@@ -27,7 +27,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.RoomClassHa
 
             var image = await _imageRepository.UploadImageAsync(request.Image, request.RoomClassId);
             await _unitOfWork.SaveChangesAsync();
-
         }
     }
 

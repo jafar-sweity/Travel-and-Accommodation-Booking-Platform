@@ -45,7 +45,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.HotelHandle
                 throw new ValidationException(HotelMessages.InvalidStarRating);
 
             _mapper.Map(request, hotel);
-
             await _hotelRepository.UpdateAsync(hotel);
             await _unitOfWork.SaveChangesAsync();
         }

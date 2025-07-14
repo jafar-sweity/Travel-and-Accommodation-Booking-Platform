@@ -43,7 +43,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.DiscountHan
             );
 
             var discounts = await _discountRepository.GetDiscountsAsync(query);
-
             return _mapper.Map<PaginatedResult<DiscountResponseDto>>(discounts);
         }
     }

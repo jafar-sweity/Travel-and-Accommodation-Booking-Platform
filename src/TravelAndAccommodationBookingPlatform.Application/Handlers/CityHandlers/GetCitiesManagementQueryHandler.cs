@@ -36,7 +36,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.CityHandler
 
             var City = await _cityRepository.GetCitiesForAdminAsync(query);
             return _mapper.Map<PaginatedResult<CityManagementResponseDto>>(City);
-
         }
     }
 }

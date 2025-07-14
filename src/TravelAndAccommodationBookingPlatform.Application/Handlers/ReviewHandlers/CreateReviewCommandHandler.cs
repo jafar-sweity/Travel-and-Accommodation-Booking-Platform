@@ -67,7 +67,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.ReviewHandl
             var reviewEntity = _mapper.Map<Review>(request);
             reviewEntity.GuestId = userId;
             reviewEntity.CreatedAt = DateTime.Now;
-
             var createdReview = await _reviewRepository.AddAsync(reviewEntity);
 
             await _unitOfWork.SaveChangesAsync();

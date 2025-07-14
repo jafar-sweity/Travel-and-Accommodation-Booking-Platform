@@ -23,6 +23,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.HotelHandle
         public async Task Handle(AddGalleryToHotelCommand request, CancellationToken cancellationToken)
         {
             var hotelExists = await _hotelRepository.ExistsByPredicateAsync(h => h.Id == request.HotelId);
+
             if (!hotelExists)
                 throw new NotFoundException(HotelMessages.HotelNotFound);
 

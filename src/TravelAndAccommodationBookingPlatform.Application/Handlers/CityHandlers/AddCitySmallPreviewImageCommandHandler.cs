@@ -27,7 +27,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.CityHandler
 
             await _imageRepository.RemoveImageAsync(request.CityId);
             await _imageRepository.UploadImageAsync(request.Image, request.CityId);
-
             await _unitOfWork.SaveChangesAsync();
         }
     }

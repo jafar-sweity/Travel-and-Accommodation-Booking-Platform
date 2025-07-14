@@ -28,10 +28,8 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.RoomClassHa
             if (!await _roomClassRepository.ExistsAsync(rc => rc.Id == request.RoomClassId))
                 throw new NotFoundException(RoomClassMessages.RoomClassNotFound);
 
-
             if (await _roomRepository.ExistsByPredicateAsync(r => r.RoomClassId == request.RoomClassId))
                 throw new DependentsExistException(RoomClassMessages.ExistingRoomsForRoomClass);
-
 
             await _roomClassRepository.RemoveAsync(request.RoomClassId);
             await _unitOfWork.SaveChangesAsync();
