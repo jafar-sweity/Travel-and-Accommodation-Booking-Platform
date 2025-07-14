@@ -3,10 +3,18 @@
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 [![.NET](https://github.com/mahamdeh0/Travel-and-Accommodation-Booking-Platform/actions/workflows/dotnet.yml/badge.svg)](https://github.com/jafar-sweity/Travel-and-Accommodation-Booking-Platform/actions/workflows/dotnet-ci.yml)
 
-Welcome to the **Travel and Accommodation Booking Platform**,A full-featured travel booking system similar to Booking.com or Expedia. It allows users to search for hotels, book rooms, and receive invoice confirmations via email. Built using **Clean Architecture**, **CQRS**, and modern backend development principles with ASP.NET Core.
-, including user authentication, booking management, city and hotel administration, discounts, reviews, and more.
+Welcome to the **Travel and Accommodation Booking Platform**, a full-featured travel booking system similar to Booking.com or Expedia. It allows users to search for hotels, book rooms, and receive invoice confirmations via email. Built using **Clean Architecture**, **CQRS**, and modern backend development principles with ASP.NET Core, including user authentication, booking management, city and hotel administration, discounts, reviews, and more.
 
----
+<div align="center">
+
+<img src="./assets/logo.png" alt="Platform Logo"
+       style="border-radius: 12px;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+              padding: 10px;
+              background-color: #f9f9f9;
+              width: 640px;" />
+
+## </div>
 
 ## 📚 Table of Contents
 
@@ -482,7 +490,7 @@ This diagram illustrates the high-level architecture of the platform. Each layer
 
 ### 📦 Project Features Diagram
 
-![Project Features](./assets/ProjectFeatures.png)
+![Project Features](./Assets/ProjectFeatures.png)
 
 This diagram highlights the key features implemented in the system, including:
 
