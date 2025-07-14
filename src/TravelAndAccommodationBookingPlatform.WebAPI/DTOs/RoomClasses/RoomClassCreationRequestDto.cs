@@ -1,4 +1,6 @@
-﻿namespace TravelAndAccommodationBookingPlatform.WebAPI.DTOs.RoomClasses
+﻿using TravelAndAccommodationBookingPlatform.Core.Enums;
+
+namespace TravelAndAccommodationBookingPlatform.WebAPI.DTOs.RoomClasses
 {
     public class RoomClassCreationRequestDto
     {
@@ -8,5 +10,6 @@
         public int MaxAdultsCapacity { get; init; }
         public decimal NightlyRate { get; init; }
         public string? Description { get; init; }
+        public RoomType TypeOfRoom { get; init; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using TravelAndAccommodationBookingPlatform.Core.Enums;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Commands.RoomClassCommands
 {
@@ -10,5 +11,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Commands.RoomClassCo
         public int MaxAdultsCapacity { get; init; }
         public decimal NightlyRate { get; init; }
         public string? Description { get; init; }
+        public RoomType TypeOfRoom { get; init; }
     }
 }

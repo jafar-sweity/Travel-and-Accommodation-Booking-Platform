@@ -31,6 +31,11 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Validators
                 .NotEmpty().WithMessage("Phone number is required.")
                 .Matches(@"^\+?\d{7,15}$").WithMessage("Phone number must be valid and between 7-15 digits.");
 
+            RuleFor(x => x.UserName)
+                .NotEmpty().WithMessage("Username is required.")
+                .MinimumLength(3).WithMessage("Username must be at least 3 characters long.")
+                .MaximumLength(50).WithMessage("Username must not exceed 50 characters.");
+
             RuleFor(x => x.DateOfBirth)
                 .NotEmpty().WithMessage("Date of birth is required.")
                 .Must(BeAtLeast18YearsOld).WithMessage("You must be at least 18 years old to register.");
