@@ -1,5 +1,8 @@
-﻿using System.Text.Json;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using TravelAndAccommodationBookingPlatform.WebAPI.Validators;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.DependencyInjection
 {
@@ -20,6 +23,8 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.DependencyInjection
             });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddFluentValidationAutoValidation(); // Enables automatic model validation
+            services.AddValidatorsFromAssemblyContaining<LoginRequestValidator>(); // Registers all validators in the same assembly
 
             return services;
         }
