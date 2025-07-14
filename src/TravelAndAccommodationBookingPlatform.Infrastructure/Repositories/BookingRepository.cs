@@ -27,7 +27,7 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 
         public async Task<PaginatedResult<Booking>> GetBookingsAsync(PaginatedQuery<Booking> query)
         {
-            IQueryable<Booking> filteredQuery = _context.Bookings;
+            IQueryable<Booking> filteredQuery = _context.Bookings.Include(b => b.Hotel);
 
             if (query.FilterExpression != null)
             {

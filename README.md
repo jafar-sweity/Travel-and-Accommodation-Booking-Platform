@@ -32,8 +32,6 @@ Welcome to the **Travel and Accommodation Booking Platform**,A full-featured tra
   - [User Dashboard](#user-dashboard)
 - [🏗️ System Architecture](#️-system-architecture)
 - [🧩 Database Schema Design](#-database-schema-design)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
 
 ---
 
@@ -215,7 +213,6 @@ Make sure the following tools and dependencies are installed on your system:
 
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 - [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (or use Docker)
-- [Node.js (optional)](https://nodejs.org/) – for future frontend extensions or Swagger UI enhancements
 - AWS credentials (if using S3 for image uploads)
 
 ---
@@ -430,3 +427,97 @@ Provides user-specific data and functionalities.
 | **Endpoint**                                  | **Method** | **Description**                             | **Authentication Required** |
 | --------------------------------------------- | ---------- | ------------------------------------------- | --------------------------- |
 | `/api/user/dashboard/recently-visited-hotels` | `GET`      | Get list of recently visited hotels by user | ✅ Yes                      |
+
+---
+
+## 🏗️ System Architecture
+
+The **Travel and Accommodation Booking Platform** is architected using the **Clean Architecture** approach to ensure modularity, separation of concerns, and maintainability.
+
+We adopted several modern design patterns such as **CQRS**, **MediatR**, and **Dependency Injection**, along with clearly separated layers to build a scalable and testable solution.
+
+### 📌 Overview Diagram
+
+![Architecture Overview](./Assets/Architecture_Used.png)
+
+This diagram illustrates the high-level architecture of the platform. Each layer has its own distinct responsibility and does not depend on the infrastructure or external tools directly.
+
+### 🧱 Layered Architecture
+
+#### 🔹 Presentation Layer (`WebAPI`)
+
+- Exposes RESTful endpoints.
+- Uses controllers to receive requests and delegate them to the application layer.
+- Hosts the Swagger documentation for easy API testing.
+- Handles HTTP responses and status codes.
+
+#### 🔹 Application Layer
+
+- Contains all business logic, commands, queries, DTOs, and validators.
+- Implements **CQRS** using **MediatR**.
+- Uses **FluentValidation** for input validation.
+- Uses **AutoMapper** for mapping between domain models and DTOs.
+- This layer depends only on the domain (Core) layer and is completely framework-independent.
+
+#### 🔹 Domain Layer (`Core`)
+
+- Defines domain entities such as `User`, `Hotel`, `Booking`, `RoomClass`, etc.
+- Contains domain-specific interfaces for repositories and services.
+- Defines value objects and enums like `PaymentType`, `HotelStatus`, and `RoomType`.
+- Represents the **core business rules** of the application.
+
+#### 🔹 Infrastructure Layer
+
+- Implements interfaces defined in the Domain layer.
+- Manages the database access using **Entity Framework Core**.
+- Implements external integrations like:
+  - **JWT Authentication**
+  - **PDF generation using QuestPDF**
+  - **Email sending via MailKit**
+  - **Image storage using AWS S3**
+  - **Logging using Serilog**
+- Responsible for setting up dependency injection, seeding, and migrations.
+
+---
+
+### 📦 Project Features Diagram
+
+![Project Features](./Assets/ProjectFeatures.png)
+
+This diagram highlights the key features implemented in the system, including:
+
+- Role-based authentication (Guest/Admin)
+- Booking workflow with invoice PDF
+- Hotel and city management
+- Room availability and class assignment
+- Review and discount modules
+- Recently visited hotels dashboard
+- Full API versioning and Swagger documentation
+
+---
+
+### 📋 Project Requirements
+
+For a detailed view of all functional and non-functional requirements, refer to:
+
+👉 [`ProjectRequirements.md`](./Assets/ProjectRequirements.md)
+
+It includes:
+
+- Use cases
+- User roles and actions
+- Business rules
+- External system assumptions
+- Technical constraints and goals
+
+---
+
+### 🔄 Workflow Summary
+
+```text
+[ Client ]
+   → [ WebAPI Controller ]
+      → [ Application Layer (MediatR) ]
+         → [ Domain Logic (Core) ]
+            → [ Infrastructure Layer (DB, Email, S3) ]
+```
