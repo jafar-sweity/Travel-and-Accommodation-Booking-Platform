@@ -9,5 +9,6 @@
         public int StarRating { get; init; }
         public decimal NightlyRate { get; init; }
         public string? SmallPreview { get; init; }
+        public string? CityName { get; init; }
     }
 }

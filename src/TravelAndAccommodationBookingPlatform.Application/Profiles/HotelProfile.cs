@@ -21,7 +21,8 @@ namespace TravelAndAccommodationBookingPlatform.Application.Profiles
 
             CreateMap<HotelSearchDto, HotelSearchResultResponseDto>()
                .ForMember(dest => dest.BriefDescription, opt => opt.MapFrom(src => src.Description))
-               .ForMember(dest => dest.SmallPreview, opt => opt.MapFrom(src => src.ThumbnailImage != null ? src.ThumbnailImage.ToString() : null));
+               .ForMember(dest => dest.SmallPreview, opt => opt.MapFrom(src => src.ThumbnailImage != null ? src.ThumbnailImage.ToString() : null))
+               .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.CityName));
             CreateMap<PaginatedResult<HotelSearchDto>, PaginatedResult<HotelSearchResultResponseDto>>().ForMember(dst => dst.Items, options => options.MapFrom(src => src.Items));
             CreateMap<PaginatedResult<HotelManagementDto>, PaginatedResult<HotelManagementResponseDto>>().ForMember(dst => dst.Items, options => options.MapFrom(src => src.Items));
 

@@ -69,7 +69,7 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
             _mapper.Map(imageCreationRequestDto, command);
 
             await _mediator.Send(command);
-            return NoContent();
+            return NoContent(); 
         }
 
         [HttpPut("{id:guid}")]
