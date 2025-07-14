@@ -18,7 +18,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Profiles
             .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.City.Name))
             .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => src.SmallPreview != null ? src.SmallPreview.Url : null))
             .ForMember(dest => dest.Gallery, opt => opt.MapFrom(src => src.FullView.Select(image => image.Url)));
-
             CreateMap<HotelSearchDto, HotelSearchResultResponseDto>()
                .ForMember(dest => dest.BriefDescription, opt => opt.MapFrom(src => src.Description))
                .ForMember(dest => dest.SmallPreview, opt => opt.MapFrom(src => src.ThumbnailImage != null ? src.ThumbnailImage.ToString() : null))

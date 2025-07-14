@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using TravelAndAccommodationBookingPlatform.Core.Entities;
+﻿using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 
 namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories
@@ -10,5 +9,6 @@ namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories
         Task<PaginatedResult<HotelManagementDto>> GetHotelsForManagementPageAsync(PaginatedQuery<Hotel> query);
         Task<PaginatedResult<HotelSearchDto>> FindHotelsAsync(PaginatedQuery<Hotel> query);
         Task UpdateReviewById(Guid hotelId, int newRating);
+        Task<Hotel?> GetHotelByIdAsync(Guid id);
     }
 }

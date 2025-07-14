@@ -19,6 +19,21 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
             _context = context;
         }
 
+        public async Task<Hotel?> GetHotelByIdAsync(Guid id)
+        {
+            var hotel = await _context.Hotels
+                .Include(h => h.City)
+                .FirstOrDefaultAsync(h => h.Id == id);
+
+            if (hotel == null)
+                return null;
+
+            hotel.SmallPreview = _context.Images.FirstOrDefault();
+            hotel.FullView = _context.Images.ToList();
+
+            return hotel;
+        }
+
         public async Task<PaginatedResult<HotelSearchDto>> FindHotelsAsync(PaginatedQuery<Hotel> query)
         {
             ArgumentNullException.ThrowIfNull(query);

@@ -20,7 +20,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.HotelHandle
         }
         public async Task<HotelGuestResponseDto> Handle(GetHotelGuestByIdQuery request, CancellationToken cancellationToken)
         {
-            var hotel = await _hotelRepository.GetByIdAsync(request.HotelId);
+            var hotel = await _hotelRepository.GetHotelByIdAsync(request.HotelId);
             return hotel == null ? throw new NotFoundException(HotelMessages.HotelNotFound) : _mapper.Map<HotelGuestResponseDto>(hotel);
         }
     }
