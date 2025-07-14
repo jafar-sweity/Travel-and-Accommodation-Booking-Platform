@@ -2,6 +2,7 @@
 using TravelAndAccommodationBookingPlatform.Application.Commands.OwnerCommands;
 using TravelAndAccommodationBookingPlatform.Application.Queries.OwnerQueries;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Owners;
+using TravelAndAccommodationBookingPlatform.WebAPI.Helpers;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.Mapping
 {
@@ -14,7 +15,7 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Mapping
             CreateMap<GetOwnersRequestDto, GetOwnersQuery>()
                 .ForMember(
                     dst => dst.SortDirection,
-                    opt => opt.MapFrom(src => src.OrderDirection));
+                    opt => opt.MapFrom(src => MappingHelpers.MapOrderDirection(src.OrderDirection)));
         }
     }
 }

@@ -3,6 +3,7 @@ using TravelAndAccommodationBookingPlatform.Application.Commands.HotelCommands;
 using TravelAndAccommodationBookingPlatform.Application.Queries.HotelQueries;
 using TravelAndAccommodationBookingPlatform.Core.Enums;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Hotels;
+using TravelAndAccommodationBookingPlatform.WebAPI.Helpers;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.Mapping
 {
@@ -22,7 +23,7 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Mapping
               .ForMember(dst => dst.RoomTypes, opt => opt.MapFrom(src => src.RoomTypes ?? Enumerable.Empty<RoomType>()))
               .ForMember(
                     dst => dst.OrderDirection,
-                    opt => opt.MapFrom(src => src.OrderDirection));
+                    opt => opt.MapFrom(src => MappingHelpers.MapOrderDirection(src.OrderDirection)));
         }
     }
 }

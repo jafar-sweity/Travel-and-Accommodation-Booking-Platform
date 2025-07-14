@@ -2,6 +2,7 @@
 using TravelAndAccommodationBookingPlatform.Application.Commands.ReviewCommands;
 using TravelAndAccommodationBookingPlatform.Application.Queries.ReviewQueries;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Reviews;
+using TravelAndAccommodationBookingPlatform.WebAPI.Helpers;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.Mapping
 {
@@ -13,7 +14,7 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Mapping
             CreateMap<GetReviewsRequestDto, GetReviewsByHotelIdQuery>()
                 .ForMember(
                     dst => dst.OrderDirection,
-                    opt => opt.MapFrom(src => src.OrderDirection));
+                    opt => opt.MapFrom(src => MappingHelpers.MapOrderDirection(src.OrderDirection)));
             CreateMap<ReviewCreationRequestDto, CreateReviewCommand>();
         }
     }

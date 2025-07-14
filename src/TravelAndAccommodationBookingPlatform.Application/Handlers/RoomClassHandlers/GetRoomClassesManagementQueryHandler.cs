@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using System.Linq.Expressions;
 using TravelAndAccommodationBookingPlatform.Application.DTOs.RoomClassDtos;
 using TravelAndAccommodationBookingPlatform.Application.Queries.RoomClassQueries;
+using TravelAndAccommodationBookingPlatform.Core.Entities;
+using TravelAndAccommodationBookingPlatform.Core.Enums;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 
@@ -26,16 +27,15 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.RoomClassHa
 
         public async Task<PaginatedResult<RoomClassManagementResponseDto>> Handle(GetRoomClassesManagementQuery request, CancellationToken cancellationToken)
         {
-            Expression<Func<Core.Entities.RoomClass, bool>> filterExpression =
-                rc => string.IsNullOrEmpty(request.Search) || rc.Name.Contains(request.Search);
-
-            var query = new PaginatedQuery<Core.Entities.RoomClass>(
-                filterExpression,
-                request.SortColumn,
-                request.PageNumber,
-                request.PageSize,
-                request.OrderDirection ?? Core.Enums.OrderDirection.Ascending
-            );
+            var query = new PaginatedQuery<RoomClass>(
+               string.IsNullOrEmpty(request.Search)
+               ? _ => true : rc => rc.Name.Contains(request.Search)
+               || (rc.Description != null && rc.Description.Contains(request.Search)),
+               request.SortColumn,
+               request.PageNumber,
+               request.PageSize,
+               request.OrderDirection ?? OrderDirection.Ascending
+           );
 
             var roomClasses = await _roomClassRepository.GetRoomClassesAsync(query);
 

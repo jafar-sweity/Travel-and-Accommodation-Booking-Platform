@@ -2,6 +2,7 @@
 using TravelAndAccommodationBookingPlatform.Application.Commands.RoomClassCommands;
 using TravelAndAccommodationBookingPlatform.Application.Queries.RoomClassQueries;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.RoomClasses;
+using TravelAndAccommodationBookingPlatform.WebAPI.Helpers;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.Mapping
 {
@@ -16,12 +17,12 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Mapping
             CreateMap<GetRoomClassesGuestRequestDto, GetRoomClassGuestQuery>()
             .ForMember(
                  dst => dst.OrderDirection,
-                 opt => opt.MapFrom(src => src.OrderDirection));
+                    opt => opt.MapFrom(src => MappingHelpers.MapOrderDirection(src.OrderDirection)));
 
             CreateMap<GetRoomClassesRequestDto, GetRoomClassesManagementQuery>()
            .ForMember(
                  dst => dst.OrderDirection,
-                 opt => opt.MapFrom(src => src.OrderDirection));
+                    opt => opt.MapFrom(src => MappingHelpers.MapOrderDirection(src.OrderDirection)));
 
         }
     }

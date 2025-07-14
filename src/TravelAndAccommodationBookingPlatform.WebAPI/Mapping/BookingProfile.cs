@@ -2,6 +2,7 @@
 using TravelAndAccommodationBookingPlatform.Application.Commands.BookingCommands;
 using TravelAndAccommodationBookingPlatform.Application.Queries.BookingQueries;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Bookings;
+using TravelAndAccommodationBookingPlatform.WebAPI.Helpers;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.Mapping
 {
@@ -13,7 +14,7 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Mapping
             CreateMap<GetBookingsRequestDto, GetBookingQuery>()
                 .ForMember(
                     dst => dst.OrderDirection,
-                    opt => opt.MapFrom(src => src.OrderDirection));
+                    opt => opt.MapFrom(src => MappingHelpers.MapOrderDirection(src.OrderDirection)));
         }
     }
 }
