@@ -490,7 +490,7 @@ This diagram illustrates the high-level architecture of the platform. Each layer
 
 ### 📦 Project Features Diagram
 
-![Project Features](./Assets/ProjectFeatures.png)
+![Project Features](./assets/ProjectFeatures.png)
 
 This diagram highlights the key features implemented in the system, including:
 
@@ -529,3 +529,65 @@ It includes:
          → [ Domain Logic (Core) ]
             → [ Infrastructure Layer (DB, Email, S3) ]
 ```
+
+---
+
+## 🧩 Database Schema Design
+
+The platform uses a **relational database schema** built with **Entity Framework Core** and follows **normalized** design principles to ensure scalability, maintainability, and performance.
+
+It covers all major entities involved in the travel and accommodation booking lifecycle, such as Users, Hotels, Bookings, Rooms, Discounts, and Reviews.
+
+Here’s a visual overview of the schema:
+
+### 📌 ER Diagram
+
+> ![Database Schema](assets/diagram.png)
+
+---
+
+### 🧱 Tables & Relationships Overview
+
+| Entity            | Description                                                                                                 |
+| ----------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Users**         | Stores user credentials and personal data. Connected to Bookings, Reviews, and Roles.                       |
+| **Roles**         | Defines system roles like Admin, User, Owner. Many-to-many relation with Users via `UserRole`.              |
+| **UserRole**      | Join table linking Users and Roles (many-to-many).                                                          |
+| **Cities**        | Represents geographical locations. One-to-many with Hotels.                                                 |
+| **Owners**        | Represents hotel owners. One-to-many with Hotels.                                                           |
+| **Hotels**        | Central entity representing a hotel. Related to City and Owner. Has many RoomClasses, Bookings, Reviews.    |
+| **RoomClasses**   | Represents types of rooms in a hotel (e.g., Deluxe, Suite). Related to Hotel. Has many Rooms and Discounts. |
+| **Rooms**         | Individual physical rooms under a RoomClass. Related to Bookings and InvoiceDetails.                        |
+| **Bookings**      | Holds reservation data. Connected to Rooms (many-to-many), InvoiceDetails, and Users.                       |
+| **BookingRoom**   | Join table for Bookings and Rooms (many-to-many).                                                           |
+| **InvoiceDetail** | Stores financial details per room per booking.                                                              |
+| **Discounts**     | Represents offers on RoomClasses.                                                                           |
+| **Reviews**       | User-generated feedback for Hotels. Related to Users and Hotels.                                            |
+| **Images**        | Polymorphic table (linked to multiple entities) to store image URLs.                                        |
+
+---
+
+### 🔁 Example Relationships
+
+- **One-to-Many:**
+
+  - City ➝ Hotels
+  - Owner ➝ Hotels
+  - Hotel ➝ RoomClasses
+  - RoomClass ➝ Rooms
+  - RoomClass ➝ Discounts
+  - User ➝ Bookings / Reviews
+
+- **Many-to-Many:**
+  - User ⬌ Role (via `UserRole`)
+  - Booking ⬌ Room (via `BookingRoom`)
+
+---
+
+### 🧠 Design Rationale
+
+- **Normalization:** Ensures data redundancy is minimized and relations are clear.
+- **Scalability:** Allows future extensions (e.g., adding Payment Gateway, Loyalty Points).
+- **InvoiceDetail:** Decouples financial logic per room and supports flexible invoicing and reporting.
+- **Polymorphic Images Table:** Enables image support for Hotels, RoomClasses, etc., without duplicating structure.
+- **Precision in Pricing Fields:** All `decimal` fields (like `PriceAtReservation`, `TaxAmount`) are stored with precision `(18,2)` to maintain accuracy in financial calculations.

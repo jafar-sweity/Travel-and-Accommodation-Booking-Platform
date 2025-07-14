@@ -142,6 +142,5 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
             await _mediator.Send(command);
             return NoContent();
         }
-
     }
 }
