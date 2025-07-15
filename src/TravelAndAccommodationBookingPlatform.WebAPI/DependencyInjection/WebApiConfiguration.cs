@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using TravelAndAccommodationBookingPlatform.WebAPI.Validators.Auth;
@@ -25,6 +26,8 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.DependencyInjection
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddFluentValidationAutoValidation(); // Enables automatic model validation
             services.AddValidatorsFromAssemblyContaining<LoginRequestValidator>(); // Registers all validators in the same assembly
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
 
             return services;
         }

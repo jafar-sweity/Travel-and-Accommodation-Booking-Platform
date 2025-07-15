@@ -40,6 +40,7 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
             return Ok(result.Items);
         }
 
+
         [HttpGet("{id:guid}")]
         [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -141,6 +142,20 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
             var command = new DeleteHotelCommand { HotelId = id };
             await _mediator.Send(command);
             return NoContent();
+        }
+
+        [HttpGet("public")]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<HotelSearchResultResponseDto>>> GetPublicHotels(
+            [FromQuery] GetHotelsPublicRequestDto requestDto)
+        {
+            var query = _mapper.Map<GetPublicHotelsQuery>(requestDto);
+            var result = await _mediator.Send(query);
+
+            Response.Headers["X-Pagination"] = JsonSerializer.Serialize(result.PaginationMetadata);
+            return Ok(result.Items);
         }
     }
 }

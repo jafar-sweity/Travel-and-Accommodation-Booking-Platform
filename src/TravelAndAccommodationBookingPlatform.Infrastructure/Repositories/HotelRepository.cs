@@ -124,5 +124,44 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
             _context.Hotels.Update(hotel);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<PaginatedResult<HotelPublicResponseDto>> GetPublicHotelsAsync(PaginatedQuery<Hotel> query)
+        {
+            ArgumentNullException.ThrowIfNull(query);
+
+            var queryable = _context.Hotels
+                .Include(h => h.City)
+                .Include(h => h.RoomClasses)
+                .AsNoTracking()
+                .AsQueryable();
+
+            if (query.FilterExpression != null)
+                queryable = queryable.Where(query.FilterExpression);
+
+            if (!string.IsNullOrEmpty(query.SortByColumn))
+                queryable = queryable.Sort(query.SortByColumn, query.SortDirection);
+
+            var paginationMetadata = await queryable.GetPaginationMetadataAsync(query.PageNumber, query.PageSize);
+
+            var hotels = await queryable
+                .GetPage(query.PageNumber, query.PageSize)
+                .Select(hotel => new HotelPublicResponseDto
+                {
+                    Id = hotel.Id,
+                    Name = hotel.Name,
+                    BriefDescription = hotel.BriefDescription,
+                    ReviewsRating = hotel.ReviewsRating,
+                    StarRating = hotel.StarRating,
+                    NightlyRate = hotel.RoomClasses.Any() ? hotel.RoomClasses.Min(rc => rc.NightlyRate) : 0,
+                    CityName = hotel.City != null ? hotel.City.Name : "Unknown",
+                    SmallPreview = _context.Images
+                        .Where(img => img.EntityId == hotel.Id)
+                        .Select(img => img.Url)
+                        .FirstOrDefault()
+                })
+                .ToListAsync();
+
+            return new PaginatedResult<HotelPublicResponseDto>(hotels, paginationMetadata);
+        }
     }
 }

@@ -42,27 +42,47 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 
         public async Task<IEnumerable<Booking>> GetRecentBookingsByGuestIdAsync(Guid guestId, int count)
         {
-            var topBookingIdsQuery = from b in _context.Bookings
-                                     where b.GuestId == guestId
-                                     group b by b.HotelId into g
-                                     let latestBooking = g.OrderByDescending(b => b.CheckInDate).FirstOrDefault()
-                                     where latestBooking != null
-                                     orderby latestBooking.CheckInDate descending
-                                     select latestBooking.Id;
 
-            var topBookingIds = await topBookingIdsQuery.Take(count).ToListAsync();
+            var latestBookingPerHotel = await (
+                from b in _context.Bookings
+                where b.GuestId == guestId
+                group b by b.HotelId into g
+                select new
+                {
+                    HotelId = g.Key,
+                    LatestBookingId = g.OrderByDescending(b => b.CheckInDate)
+                                       .Select(b => b.Id)
+                                       .First()
+                }
+            ).Take(count)
+             .ToListAsync();
 
-            if (!topBookingIds.Any()) return Enumerable.Empty<Booking>();
+            if (!latestBookingPerHotel.Any())
+                return Enumerable.Empty<Booking>();
 
-            var recentBookingsWithHotel = await _context.Bookings.Where(b => topBookingIds.Contains(b.Id)).Include(b => b.Hotel).ThenInclude(h => h.City).ToListAsync();
+            var recentBookings = await _context.Bookings
+                .Where(b => latestBookingPerHotel.Select(x => x.LatestBookingId).Contains(b.Id))
+                .Include(b => b.Hotel)
+                .ThenInclude(h => h.City)
+                .ToListAsync();
 
-            var bookingsWithImages = recentBookingsWithHotel.GroupJoin(_context.Images.AsNoTracking(),
-            b => b.Hotel.Id, img => img.EntityId,
-            (booking, images) => new
-            {
-                Booking = booking,
-                SmallPreview = images.FirstOrDefault()
-            }).ToList();
+            var images = await _context.Images
+                        .Where(img => latestBookingPerHotel.Select(x => x.LatestBookingId).Contains(img.EntityId))
+                        .AsNoTracking()
+                        .ToListAsync();
+
+
+            var bookingsWithImages = recentBookings
+                .GroupJoin(
+                    images,
+                    b => b.Id,
+                    img => img.EntityId, 
+                    (booking, imageGroup) => new
+                    {
+                        Booking = booking,
+                        SmallPreview = imageGroup.FirstOrDefault()
+                    })
+                .ToList();
 
             foreach (var item in bookingsWithImages)
             {
@@ -72,8 +92,13 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
                 }
             }
 
-            return bookingsWithImages.Select(x => x.Booking)
-                .OrderBy(b => topBookingIds.IndexOf(b.Id));
+            var orderedBookingIds = latestBookingPerHotel
+                .OrderByDescending(x => x.LatestBookingId) 
+                .Select(x => x.LatestBookingId);
+
+            return bookingsWithImages
+                .OrderBy(b => orderedBookingIds.ToList().IndexOf(b.Booking.Id))
+                .Select(x => x.Booking);
         }
     }
 }

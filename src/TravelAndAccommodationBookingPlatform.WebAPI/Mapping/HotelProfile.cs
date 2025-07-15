@@ -24,6 +24,8 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Mapping
               .ForMember(
                     dst => dst.OrderDirection,
                     opt => opt.MapFrom(src => MappingHelpers.MapOrderDirection(src.OrderDirection)));
+
+            CreateMap<GetHotelsPublicRequestDto, GetPublicHotelsQuery>();
         }
     }
 }
