@@ -1,7 +1,7 @@
 # Travel and Accommodation Booking Platform
 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
-[![.NET](https://github.com/mahamdeh0/Travel-and-Accommodation-Booking-Platform/actions/workflows/dotnet.yml/badge.svg)](https://github.com/jafar-sweity/Travel-and-Accommodation-Booking-Platform/actions/workflows/dotnet-ci.yml)
+[![.NET](https://github.com/jafar-sweity/Travel-and-Accommodation-Booking-Platform/actions/workflows/dotnet-ci.yml/badge.svg)](https://github.com/jafar-sweity/Travel-and-Accommodation-Booking-Platform/actions/workflows/dotnet-ci.yml)
 
 Welcome to the **Travel and Accommodation Booking Platform**, a full-featured travel booking system similar to Booking.com or Expedia. It allows users to search for hotels, book rooms, and receive invoice confirmations via email. Built using **Clean Architecture**, **CQRS**, and modern backend development principles with ASP.NET Core, including user authentication, booking management, city and hotel administration, discounts, reviews, and more.
 
@@ -16,18 +16,18 @@ Welcome to the **Travel and Accommodation Booking Platform**, a full-featured tr
 
 ## </div>
 
-## 📚 Table of Contents
+## Table of Contents
 
-- [🌟 Key Features](#-key-features)
-- [🛠 Technology Stack](#-technology-stack)
-- [🧪 Unit Testing](#-unit-testing)
-- [🗂 API Versioning](#-api-versioning)
-- [⚙️ Setup Guide](#️-setup-guide)
-  - [🔧 Prerequisites](#-prerequisites)
-  - [📥 Installation](#-installation)
-  - [🛠 Configuration](#-configuration)
-  - [▶️ Running the Application](#️-running-the-application)
-- [🔗 Endpoints](#-endpoints)
+- [ Key Features](#-key-features)
+- [ Technology Stack](#-technology-stack)
+- [ Unit Testing](#-unit-testing)
+- [ API Versioning](#-api-versioning)
+- [ Setup Guide](#️-setup-guide)
+  - [ Prerequisites](#-prerequisites)
+  - [ Installation](#-installation)
+  - [ Configuration](#-configuration)
+  - [ Running the Application](#️-running-the-application)
+- [ Endpoints](#-endpoints)
   - [Authentication](#authentication)
   - [Bookings](#bookings)
   - [Cities](#cities)
@@ -38,8 +38,8 @@ Welcome to the **Travel and Accommodation Booking Platform**, a full-featured tr
   - [Room Classes](#room-classes)
   - [Rooms](#rooms)
   - [User Dashboard](#user-dashboard)
-- [🏗️ System Architecture](#️-system-architecture)
-- [🧩 Database Schema Design](#-database-schema-design)
+- [ System Architecture](#️-system-architecture)
+- [ Database Schema Design](#-database-schema-design)
 
 ---
 
