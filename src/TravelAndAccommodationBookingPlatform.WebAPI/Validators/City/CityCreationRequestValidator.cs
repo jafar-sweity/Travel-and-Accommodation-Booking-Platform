@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Cities;
 
-namespace TravelAndAccommodationBookingPlatform.WebAPI.Validators.Cities
+namespace TravelAndAccommodationBookingPlatform.WebAPI.Validators.City
 {
     public class CityCreationRequestValidator : AbstractValidator<CityCreationRequestDto>
     {

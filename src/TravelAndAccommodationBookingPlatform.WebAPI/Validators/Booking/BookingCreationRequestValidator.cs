@@ -2,7 +2,7 @@
 using FluentValidation;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Bookings;
 
-namespace TravelAndAccommodationBookingPlatform.WebAPI.Validators
+namespace TravelAndAccommodationBookingPlatform.WebAPI.Validators.Booking
 {
     public class BookingCreationValidatior : AbstractValidator<BookingCreationRequestDto>
     {

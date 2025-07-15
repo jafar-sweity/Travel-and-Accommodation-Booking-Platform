@@ -13,7 +13,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Queries.HotelQueries
         public int PageNumber { get; init; }
         public int PageSize { get; init; }
         public string? CityName { get; init; }
-
         public int MaxChildrenCapacity { get; set; }
         public int MaxAdultsCapacity { get; set; }
         public int NumberOfRooms { get; init; }

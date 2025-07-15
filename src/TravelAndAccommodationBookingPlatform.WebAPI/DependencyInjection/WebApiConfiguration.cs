@@ -2,7 +2,7 @@
 using FluentValidation.AspNetCore;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using TravelAndAccommodationBookingPlatform.WebAPI.Validators;
+using TravelAndAccommodationBookingPlatform.WebAPI.Validators.Auth;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.DependencyInjection
 {

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Rooms;
 
-namespace TravelAndAccommodationBookingPlatform.WebAPI.Validators.Rooms
+namespace TravelAndAccommodationBookingPlatform.WebAPI.Validators.Room
 {
     public class RoomCreationRequestValidator : AbstractValidator<RoomCreationRequestDto>
     {

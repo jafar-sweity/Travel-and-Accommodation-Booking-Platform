@@ -38,11 +38,8 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.UserHandler
                 throw new UserWithEmailAlreadyExistsException(UserMessages.EmailAlreadyExists);
 
             var role = await _roleRepository.GetRoleByNameAsync(request.Role) ?? throw new InvalidRoleException(UserMessages.InvalidRole);
-
             var user = _mapper.Map<User>(request);
-
             user.HashedPassword = _passwordHashService.HashPassword(request.Password);
-
             user.Roles.Add(role);
 
             await _userRepository.AddAsync(user);

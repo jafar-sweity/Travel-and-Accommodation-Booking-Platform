@@ -2,7 +2,7 @@
 using TravelAndAccommodationBookingPlatform.Application.Commands.UserCommands;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Authentication;
 
-namespace TravelAndAccommodationBookingPlatform.WebAPI.AutoMapping
+namespace TravelAndAccommodationBookingPlatform.WebAPI.Mapping
 {
     public class AuthenticationProfile : Profile
     {

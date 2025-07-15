@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Owners;
 
-namespace TravelAndAccommodationBookingPlatform.WebAPI.Validators.Owners
+namespace TravelAndAccommodationBookingPlatform.WebAPI.Validators.Owner
 {
     public class OwnerCreationRequestValidator : AbstractValidator<OwnerCreationRequestDto>
     {

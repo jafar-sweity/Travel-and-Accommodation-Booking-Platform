@@ -18,7 +18,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Profiles
             CreateMap<CityManagementDto, CityManagementResponseDto>();
             CreateMap<City, TrendingCityResponseDto>()
               .ForMember(dst => dst.SmallPreview, options => options.MapFrom(src => src.SmallPreview != null ? src.SmallPreview.Url : null));
-
         }
     }
 }

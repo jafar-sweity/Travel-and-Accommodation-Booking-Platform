@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Authentication;
 
-namespace TravelAndAccommodationBookingPlatform.WebAPI.Validators
+namespace TravelAndAccommodationBookingPlatform.WebAPI.Validators.Auth
 {
     public class RegisterRequestValidator : AbstractValidator<RegisterRequestDto>
     {
