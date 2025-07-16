@@ -82,10 +82,11 @@ namespace TravelAndAccommodationBookingPlatform.Infrastructure.Repositories
 
         public async Task<Room?> GetRoomWithRoomClassByIdAsync(Guid roomId)
         {
-            ArgumentNullException.ThrowIfNull(roomId);
+            var currentDateTime = DateTime.UtcNow;
+
             return await _context.Rooms
                 .Include(r => r.RoomClass)
-                .ThenInclude(rc => rc.Hotel)
+                .ThenInclude(rc => rc.Discounts.Where(d => d.StartDate <= currentDateTime && d.EndDate > currentDateTime))
                 .FirstOrDefaultAsync(r => r.Id == roomId);
         }
     }

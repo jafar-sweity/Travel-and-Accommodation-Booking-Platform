@@ -96,6 +96,9 @@ namespace TravelAndAccommodationBookingPlatform.Application.Handlers.BookingHand
                 Rooms = rooms
             };
 
+            // test the room class discounts just one 
+            var bookingTestRoomClass = booking.Rooms.FirstOrDefault()?.RoomClass.Discounts.FirstOrDefault();
+            Console.WriteLine($"Booking Test Room Class Discount: {bookingTestRoomClass?.Percentage ?? 0}%");
             var createdBooking = await _bookingRepository.AddAsync(booking);
 
             foreach (var room in rooms)
