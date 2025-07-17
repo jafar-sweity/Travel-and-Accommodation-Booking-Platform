@@ -2,8 +2,7 @@
 using FluentAssertions;
 using Moq;
 using System.Linq.Expressions;
-using TravelAndAccommodationBookingPlatform.Application.Commands.HotelCommands;
-using TravelAndAccommodationBookingPlatform.Application.Handlers.HotelHandlers;
+using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Commands.CreateHotel;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;

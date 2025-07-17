@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using TravelAndAccommodationBookingPlatform.Application.Commands.ReviewCommands;
-using TravelAndAccommodationBookingPlatform.Application.Queries.ReviewQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Reviews.Commands.CreateReview;
+using TravelAndAccommodationBookingPlatform.Application.Features.Reviews.Commands.UpdateReview;
+using TravelAndAccommodationBookingPlatform.Application.Features.Reviews.Queries.GetReviewsByHotelId;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Reviews;
 using TravelAndAccommodationBookingPlatform.WebAPI.Helpers;
 

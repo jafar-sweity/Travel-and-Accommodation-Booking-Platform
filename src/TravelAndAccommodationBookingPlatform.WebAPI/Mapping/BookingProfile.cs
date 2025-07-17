@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using TravelAndAccommodationBookingPlatform.Application.Commands.BookingCommands;
-using TravelAndAccommodationBookingPlatform.Application.Queries.BookingQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Booking.Commands.CreateBooking;
+using TravelAndAccommodationBookingPlatform.Application.Features.Booking.Queries.GetBookings;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Bookings;
 using TravelAndAccommodationBookingPlatform.WebAPI.Helpers;
 

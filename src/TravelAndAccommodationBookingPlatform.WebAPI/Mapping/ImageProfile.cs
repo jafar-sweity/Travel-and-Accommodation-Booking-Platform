@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using TravelAndAccommodationBookingPlatform.Application.Commands.CityCommands;
-using TravelAndAccommodationBookingPlatform.Application.Commands.HotelCommands;
-using TravelAndAccommodationBookingPlatform.Application.Commands.RoomClassCommands;
+using TravelAndAccommodationBookingPlatform.Application.Features.Cities.Commands.AddCitySmallPreviewImage;
+using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Commands.AddGalleryToHotel;
+using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Commands.AddHotelThumbnail;
+using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.Commands.AddGalleryToRoomClass;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Images;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Profiles

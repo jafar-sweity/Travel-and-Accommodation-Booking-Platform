@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using Moq;
-using TravelAndAccommodationBookingPlatform.Application.DTOs.CityDtos;
-using TravelAndAccommodationBookingPlatform.Application.Handlers.CityHandlers;
-using TravelAndAccommodationBookingPlatform.Application.Queries.CityQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Cities.DTOs;
+using TravelAndAccommodationBookingPlatform.Application.Features.Cities.Queries.GetTrendingCities;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 

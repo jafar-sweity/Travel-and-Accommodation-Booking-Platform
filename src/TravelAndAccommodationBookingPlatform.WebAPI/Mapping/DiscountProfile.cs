@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using TravelAndAccommodationBookingPlatform.Application.Commands.DiscountCommands;
-using TravelAndAccommodationBookingPlatform.Application.Queries.DiscountQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Discounts.Commands.CreateDiscount;
+using TravelAndAccommodationBookingPlatform.Application.Features.Discounts.Queries.GetDiscounts;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Discounts;
 using TravelAndAccommodationBookingPlatform.WebAPI.Helpers;
 

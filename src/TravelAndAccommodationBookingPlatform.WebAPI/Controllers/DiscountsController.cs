@@ -3,9 +3,11 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using TravelAndAccommodationBookingPlatform.Application.Commands.DiscountCommands;
-using TravelAndAccommodationBookingPlatform.Application.DTOs.DiscountDtos;
-using TravelAndAccommodationBookingPlatform.Application.Queries.DiscountQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Discounts.Commands.CreateDiscount;
+using TravelAndAccommodationBookingPlatform.Application.Features.Discounts.Commands.DeleteDiscount;
+using TravelAndAccommodationBookingPlatform.Application.Features.Discounts.DTOs;
+using TravelAndAccommodationBookingPlatform.Application.Features.Discounts.Queries.GetDiscountById;
+using TravelAndAccommodationBookingPlatform.Application.Features.Discounts.Queries.GetDiscounts;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Discounts;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers

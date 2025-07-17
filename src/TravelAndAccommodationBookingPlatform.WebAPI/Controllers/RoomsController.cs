@@ -3,9 +3,11 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using TravelAndAccommodationBookingPlatform.Application.Commands.RoomCommands;
-using TravelAndAccommodationBookingPlatform.Application.DTOs.RoomDtos;
-using TravelAndAccommodationBookingPlatform.Application.Queries.RoomQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Rooms.Commands.CreateRoom;
+using TravelAndAccommodationBookingPlatform.Application.Features.Rooms.Commands.DeleteRoom;
+using TravelAndAccommodationBookingPlatform.Application.Features.Rooms.Commands.UpdateRoom;
+using TravelAndAccommodationBookingPlatform.Application.Features.Rooms.DTOs;
+using TravelAndAccommodationBookingPlatform.Application.Features.Rooms.Queries.GetRoomsManagement;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Rooms;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers

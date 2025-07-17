@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TravelAndAccommodationBookingPlatform.Application.Commands.UserCommands;
-using TravelAndAccommodationBookingPlatform.Application.DTOs.UserDtos;
+using TravelAndAccommodationBookingPlatform.Application.Features.Users.Commands.Login;
+using TravelAndAccommodationBookingPlatform.Application.Features.Users.Commands.Register;
+using TravelAndAccommodationBookingPlatform.Application.Features.Users.DTOs;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Authentication;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers

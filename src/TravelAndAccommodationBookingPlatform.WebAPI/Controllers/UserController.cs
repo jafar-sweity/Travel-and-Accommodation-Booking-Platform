@@ -3,8 +3,8 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using TravelAndAccommodationBookingPlatform.Application.DTOs.HotelDtos;
-using TravelAndAccommodationBookingPlatform.Application.Queries.HotelQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.DTOs;
+using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Queries.GetRecentlyVisitedHotels;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Hotels;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers

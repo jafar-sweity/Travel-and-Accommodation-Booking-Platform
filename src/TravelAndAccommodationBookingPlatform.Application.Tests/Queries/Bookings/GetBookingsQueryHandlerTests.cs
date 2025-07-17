@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using FluentAssertions; // Add this using directive at the top of the file
 using Moq;
-using TravelAndAccommodationBookingPlatform.Application.DTOs.BookingDtos;
-using TravelAndAccommodationBookingPlatform.Application.Handlers.BookingHandlers;
-using TravelAndAccommodationBookingPlatform.Application.Queries.BookingQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Booking.DTOs;
+using TravelAndAccommodationBookingPlatform.Application.Features.Booking.Queries.GetBookings;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Enums;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;

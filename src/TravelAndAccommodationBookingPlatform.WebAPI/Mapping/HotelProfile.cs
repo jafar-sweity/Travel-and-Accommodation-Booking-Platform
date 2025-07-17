@@ -1,6 +1,11 @@
 ﻿using AutoMapper;
-using TravelAndAccommodationBookingPlatform.Application.Commands.HotelCommands;
-using TravelAndAccommodationBookingPlatform.Application.Queries.HotelQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Commands.CreateHotel;
+using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Commands.UpdateHotel;
+using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Queries.GetHotelFeaturedDeals;
+using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Queries.GetHotelsManagement;
+using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Queries.GetPublicHotels;
+using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Queries.GetRecentlyVisitedHotels;
+using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Queries.SearchHotels;
 using TravelAndAccommodationBookingPlatform.Core.Enums;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Hotels;
 using TravelAndAccommodationBookingPlatform.WebAPI.Helpers;

@@ -3,9 +3,12 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using TravelAndAccommodationBookingPlatform.Application.Commands.RoomClassCommands;
-using TravelAndAccommodationBookingPlatform.Application.DTOs.RoomClassDtos;
-using TravelAndAccommodationBookingPlatform.Application.Queries.RoomClassQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.Commands.AddGalleryToRoomClass;
+using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.Commands.CreateRoomClass;
+using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.Commands.DeleteRoomClass;
+using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.Commands.UpdateRoomClass;
+using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.DTOs;
+using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.Queries.GetRoomClassesManagement;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Images;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.RoomClasses;
 
@@ -69,7 +72,7 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
             _mapper.Map(imageCreationRequestDto, command);
 
             await _mediator.Send(command);
-            return NoContent(); 
+            return NoContent();
         }
 
         [HttpPut("{id:guid}")]

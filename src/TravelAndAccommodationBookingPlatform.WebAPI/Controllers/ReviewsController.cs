@@ -3,10 +3,12 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using TravelAndAccommodationBookingPlatform.Application.Commands.DiscountCommands;
-using TravelAndAccommodationBookingPlatform.Application.Commands.ReviewCommands;
-using TravelAndAccommodationBookingPlatform.Application.DTOs.ReviewDtos;
-using TravelAndAccommodationBookingPlatform.Application.Queries.ReviewQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Reviews.Commands.CreateReview;
+using TravelAndAccommodationBookingPlatform.Application.Features.Reviews.Commands.DeleteReview;
+using TravelAndAccommodationBookingPlatform.Application.Features.Reviews.Commands.UpdateReview;
+using TravelAndAccommodationBookingPlatform.Application.Features.Reviews.DTOs;
+using TravelAndAccommodationBookingPlatform.Application.Features.Reviews.Queries.GetReviewById;
+using TravelAndAccommodationBookingPlatform.Application.Features.Reviews.Queries.GetReviewsByHotelId;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Reviews;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers

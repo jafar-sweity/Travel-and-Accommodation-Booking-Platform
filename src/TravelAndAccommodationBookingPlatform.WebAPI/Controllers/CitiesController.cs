@@ -3,9 +3,13 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using TravelAndAccommodationBookingPlatform.Application.Commands.CityCommands;
-using TravelAndAccommodationBookingPlatform.Application.DTOs.CityDtos;
-using TravelAndAccommodationBookingPlatform.Application.Queries.CityQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Cities.Commands.AddCitySmallPreviewImage;
+using TravelAndAccommodationBookingPlatform.Application.Features.Cities.Commands.CreateCity;
+using TravelAndAccommodationBookingPlatform.Application.Features.Cities.Commands.DeleteCity;
+using TravelAndAccommodationBookingPlatform.Application.Features.Cities.Commands.UpdateCity;
+using TravelAndAccommodationBookingPlatform.Application.Features.Cities.DTOs;
+using TravelAndAccommodationBookingPlatform.Application.Features.Cities.Queries.GetCitiesManagement;
+using TravelAndAccommodationBookingPlatform.Application.Features.Cities.Queries.GetTrendingCities;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Cities;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Images;
 

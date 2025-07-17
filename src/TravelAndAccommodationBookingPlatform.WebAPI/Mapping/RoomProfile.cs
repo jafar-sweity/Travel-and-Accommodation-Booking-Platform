@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using TravelAndAccommodationBookingPlatform.Application.Commands.RoomCommands;
-using TravelAndAccommodationBookingPlatform.Application.Queries.RoomQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Rooms.Commands.CreateRoom;
+using TravelAndAccommodationBookingPlatform.Application.Features.Rooms.Queries.GetGuestRoomsByClassId;
+using TravelAndAccommodationBookingPlatform.Application.Features.Rooms.Queries.GetRoomsManagement;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Rooms;
 using TravelAndAccommodationBookingPlatform.WebAPI.Helpers;
 

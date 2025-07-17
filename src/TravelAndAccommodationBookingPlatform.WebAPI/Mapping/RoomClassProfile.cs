@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using TravelAndAccommodationBookingPlatform.Application.Commands.RoomClassCommands;
-using TravelAndAccommodationBookingPlatform.Application.Queries.RoomClassQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.Commands.CreateRoomClass;
+using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.Commands.UpdateRoomClass;
+using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.Queries.GetRoomClassesManagement;
+using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.Queries.GetRoomClassGuest;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.RoomClasses;
 using TravelAndAccommodationBookingPlatform.WebAPI.Helpers;
 

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using TravelAndAccommodationBookingPlatform.Application.Commands.CityCommands;
-using TravelAndAccommodationBookingPlatform.Application.Queries.CityQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Cities.Commands.CreateCity;
+using TravelAndAccommodationBookingPlatform.Application.Features.Cities.Commands.UpdateCity;
+using TravelAndAccommodationBookingPlatform.Application.Features.Cities.Queries.GetCitiesManagement;
+using TravelAndAccommodationBookingPlatform.Application.Features.Cities.Queries.GetTrendingCities;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Cities;
 using TravelAndAccommodationBookingPlatform.WebAPI.Helpers;
 

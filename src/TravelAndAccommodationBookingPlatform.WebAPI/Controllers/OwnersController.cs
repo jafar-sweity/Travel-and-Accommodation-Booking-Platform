@@ -3,9 +3,11 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using TravelAndAccommodationBookingPlatform.Application.Commands.OwnerCommands;
-using TravelAndAccommodationBookingPlatform.Application.DTOs.OwnerDtos;
-using TravelAndAccommodationBookingPlatform.Application.Queries.OwnerQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Owners.Commands.CreateOwner;
+using TravelAndAccommodationBookingPlatform.Application.Features.Owners.Commands.UpdateOwner;
+using TravelAndAccommodationBookingPlatform.Application.Features.Owners.DTOs;
+using TravelAndAccommodationBookingPlatform.Application.Features.Owners.Queries.GetOwnerById;
+using TravelAndAccommodationBookingPlatform.Application.Features.Owners.Queries.GetOwners;
 using TravelAndAccommodationBookingPlatform.Core.Models;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Owners;
 

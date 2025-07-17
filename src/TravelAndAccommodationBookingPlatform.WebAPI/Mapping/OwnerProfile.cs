@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using TravelAndAccommodationBookingPlatform.Application.Commands.OwnerCommands;
-using TravelAndAccommodationBookingPlatform.Application.Queries.OwnerQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Owners.Commands.CreateOwner;
+using TravelAndAccommodationBookingPlatform.Application.Features.Owners.Commands.UpdateOwner;
+using TravelAndAccommodationBookingPlatform.Application.Features.Owners.Queries.GetOwners;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Owners;
 using TravelAndAccommodationBookingPlatform.WebAPI.Helpers;
 

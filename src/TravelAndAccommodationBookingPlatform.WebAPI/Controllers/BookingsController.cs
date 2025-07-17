@@ -3,9 +3,12 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using TravelAndAccommodationBookingPlatform.Application.Commands.BookingCommands;
-using TravelAndAccommodationBookingPlatform.Application.DTOs.BookingDtos;
-using TravelAndAccommodationBookingPlatform.Application.Queries.BookingQueries;
+using TravelAndAccommodationBookingPlatform.Application.Features.Booking.Commands.CreateBooking;
+using TravelAndAccommodationBookingPlatform.Application.Features.Booking.Commands.DeleteBooking;
+using TravelAndAccommodationBookingPlatform.Application.Features.Booking.DTOs;
+using TravelAndAccommodationBookingPlatform.Application.Features.Booking.Queries.GetBookingById;
+using TravelAndAccommodationBookingPlatform.Application.Features.Booking.Queries.GetBookings;
+using TravelAndAccommodationBookingPlatform.Application.Features.Booking.Queries.RetrieveInvoicePdf;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Bookings;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
