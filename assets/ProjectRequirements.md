@@ -27,9 +27,9 @@ together!
 
 ## **Project Features**
 
-![Project Features](../diagrams/Excalidraw-ProjectFeatures.png)
+![Project Features](ProjectFeatures.png)
 
-https://excalidraw.com/#json=E95OwtS_yCQIeY6z2C1y2,hVOE2l7QvJXilwsDqrIqDg
+[![.NET](https://gist.githubusercontent.com/cxmeel/0dbc95191f239b631c3874f4ccf114e2/raw/docs.svg)](https://excalidraw.com/#json=E95OwtS_yCQIeY6z2C1y2,hVOE2l7QvJXilwsDqrIqDg)
 
 ## **1. Login Page**
 
@@ -133,43 +133,43 @@ https://excalidraw.com/#json=E95OwtS_yCQIeY6z2C1y2,hVOE2l7QvJXilwsDqrIqDg
 ### **Technical Requirements**
 
 1. **Design and Implementation of APIs**
-    - Focus on creating APIs that are well-designed, maintainable, and efficient.
-    - Use RESTful principles for API design, ensuring clear, well-documented endpoints.
+   - Focus on creating APIs that are well-designed, maintainable, and efficient.
+   - Use RESTful principles for API design, ensuring clear, well-documented endpoints.
 2. **Clean Code Principles**
-    - Write code that is readable, maintainable, and adheres to standard coding conventions.
-    - Implement consistent naming conventions, code structuring, and comments for better readability.
+   - Write code that is readable, maintainable, and adheres to standard coding conventions.
+   - Implement consistent naming conventions, code structuring, and comments for better readability.
 3. **Efficient Handling of Data and Resources**
-    - Optimize data storage, retrieval, and manipulation for performance and scalability.
-    - Ensure efficient use of server resources, avoiding memory leaks and unnecessary processing.
+   - Optimize data storage, retrieval, and manipulation for performance and scalability.
+   - Ensure efficient use of server resources, avoiding memory leaks and unnecessary processing.
 4. **Robust Error Handling and Logging**
-    - Implement comprehensive error handling to catch and manage exceptions gracefully.
-    - Use logging to track errors, user actions, and system behavior for easier debugging and monitoring.
+   - Implement comprehensive error handling to catch and manage exceptions gracefully.
+   - Use logging to track errors, user actions, and system behavior for easier debugging and monitoring.
 5. **Secure JWT Authentication**
-    - Implement JSON Web Token (JWT) authentication to securely handle user sessions.
-    - Ensure tokens are stored and transmitted securely.
+   - Implement JSON Web Token (JWT) authentication to securely handle user sessions.
+   - Ensure tokens are stored and transmitted securely.
 6. **User Permissions Management**
-    - Design a robust permission system to control user access to different parts of the application.
-    - Implement role-based access control (RBAC) for fine-grained permissions.
+   - Design a robust permission system to control user access to different parts of the application.
+   - Implement role-based access control (RBAC) for fine-grained permissions.
 7. **Unit Testing**
-    - Develop and maintain a suite of unit tests to ensure the functionality, reliability, and ( bonus ) performance of
-      the App.
-    - Ensure that tests cover a wide range of scenarios, including edge cases, to validate the robustness of the API.
+   - Develop and maintain a suite of unit tests to ensure the functionality, reliability, and ( bonus ) performance of
+     the App.
+   - Ensure that tests cover a wide range of scenarios, including edge cases, to validate the robustness of the API.
 8. Integration and API testing
 
 ### **Additional Technical Requirements**
 
 1. **Documentation**
-    - Maintain up-to-date and detailed documentation for the codebase and APIs.
-    - Include setup guides, API usage examples, and environment configuration instructions.
+   - Maintain up-to-date and detailed documentation for the codebase and APIs.
+   - Include setup guides, API usage examples, and environment configuration instructions.
 2. **[ `Bonus`] -** **Deploying the Project**
-    - Set up a CI/CD pipeline for automated testing and deployment.
-    - Ensure the application is deployable on cloud platforms like AWS, Azure, or GCP.
-    - Include containerization (e.g., Docker) for consistent environments across development and production.
+   - Set up a CI/CD pipeline for automated testing and deployment.
+   - Ensure the application is deployable on cloud platforms like AWS, Azure, or GCP.
+   - Include containerization (e.g., Docker) for consistent environments across development and production.
 
 ### **Project Management**
 
 1. **Use of Jira (or other Project Management apps) for Task Management**
-    - Utilize Jira effectively for tracking progress, managing tasks, and organizing sprints.
-    - Create clear, actionable user stories and tasks, with well-defined acceptance criteria.
+   - Utilize Jira effectively for tracking progress, managing tasks, and organizing sprints.
+   - Create clear, actionable user stories and tasks, with well-defined acceptance criteria.
 2. **Progress Tracking and Reporting**
-    - Regularly update tasks with current status and any blockers.
+   - Regularly update tasks with current status and any blockers.

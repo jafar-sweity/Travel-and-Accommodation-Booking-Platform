@@ -2,7 +2,6 @@
 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 [![.NET](https://github.com/jafar-sweity/Travel-and-Accommodation-Booking-Platform/actions/workflows/dotnet-ci.yml/badge.svg)](https://github.com/jafar-sweity/Travel-and-Accommodation-Booking-Platform/actions/workflows/dotnet-ci.yml)
-
 Welcome to the **Travel and Accommodation Booking Platform**, a full-featured travel booking system similar to Booking.com or Expedia. It allows users to search for hotels, book rooms, and receive invoice confirmations via email. Built using **Clean Architecture**, **CQRS**, and modern backend development principles with ASP.NET Core, including user authentication, booking management, city and hotel administration, discounts, reviews, and more.
 
 <div align="center">
@@ -220,8 +219,8 @@ This guide helps you set up the Travel and Accommodation Booking Platform locall
 Make sure the following tools and dependencies are installed on your system:
 
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (or use Docker)
-- AWS credentials (if using S3 for image uploads)
+- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (or you can use Docker)
+- AWS credentials (For using S3 for image uploads & EC2 & Auto Scaling Group)
 
 ---
 
