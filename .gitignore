@@ -16,8 +16,7 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-
-# Mono auto generated files
+**/appsettings.Development.json
 mono_crash.*
 
 # Build results
@@ -26,7 +25,7 @@ mono_crash.*
 [Rr]elease/
 [Rr]eleases/
 x64/
-x86/
+x86/s
 [Ww][Ii][Nn]32/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
