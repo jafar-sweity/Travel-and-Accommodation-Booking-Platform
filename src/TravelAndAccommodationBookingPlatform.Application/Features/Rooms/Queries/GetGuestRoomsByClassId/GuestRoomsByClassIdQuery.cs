@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using TravelAndAccommodationBookingPlatform.Application.Features.Rooms.DTOs;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Features.Rooms.Queries.GetGuestRoomsByClassId
 {

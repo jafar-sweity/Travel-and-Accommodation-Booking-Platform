@@ -3,6 +3,8 @@ using MediatR;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Response;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Queries.GetPublicHotels
 {

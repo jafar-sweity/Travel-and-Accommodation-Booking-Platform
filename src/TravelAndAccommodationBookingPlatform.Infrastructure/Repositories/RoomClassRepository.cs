@@ -3,7 +3,7 @@ using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Extensions;
 

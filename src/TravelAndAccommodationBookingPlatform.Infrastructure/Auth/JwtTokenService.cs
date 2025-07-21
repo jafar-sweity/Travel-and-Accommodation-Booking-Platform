@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Auth;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.Auth;
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.Auth
 {

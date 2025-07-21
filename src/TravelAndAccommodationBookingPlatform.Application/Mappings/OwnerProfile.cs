@@ -3,7 +3,7 @@ using TravelAndAccommodationBookingPlatform.Application.Features.Owners.Commands
 using TravelAndAccommodationBookingPlatform.Application.Features.Owners.Commands.UpdateOwner;
 using TravelAndAccommodationBookingPlatform.Application.Features.Owners.DTOs;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Profiles
 {

@@ -4,7 +4,9 @@ using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
 using TravelAndAccommodationBookingPlatform.Core.Constants.Exceptions;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Request;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Response;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Data;
 using TravelAndAccommodationBookingPlatform.Infrastructure.Extensions;
 

@@ -1,6 +1,6 @@
 ﻿using TravelAndAccommodationBookingPlatform.Core.Entities;
 
-namespace TravelAndAccommodationBookingPlatform.Core.Models
+namespace TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Request
 {
     public class HotelManagementDto
     {

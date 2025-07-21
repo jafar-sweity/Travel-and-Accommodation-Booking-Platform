@@ -8,7 +8,7 @@ using TravelAndAccommodationBookingPlatform.Application.Features.Owners.Commands
 using TravelAndAccommodationBookingPlatform.Application.Features.Owners.DTOs;
 using TravelAndAccommodationBookingPlatform.Application.Features.Owners.Queries.GetOwnerById;
 using TravelAndAccommodationBookingPlatform.Application.Features.Owners.Queries.GetOwners;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
 using TravelAndAccommodationBookingPlatform.WebAPI.DTOs.Owners;
 
 namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers

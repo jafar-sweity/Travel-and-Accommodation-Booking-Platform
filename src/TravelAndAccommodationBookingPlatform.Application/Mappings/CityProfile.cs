@@ -3,7 +3,8 @@ using TravelAndAccommodationBookingPlatform.Application.Features.Cities.Commands
 using TravelAndAccommodationBookingPlatform.Application.Features.Cities.Commands.UpdateCity;
 using TravelAndAccommodationBookingPlatform.Application.Features.Cities.DTOs;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Request;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Profiles
 {

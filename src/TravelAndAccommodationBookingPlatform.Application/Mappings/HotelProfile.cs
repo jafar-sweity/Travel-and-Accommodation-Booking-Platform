@@ -4,7 +4,8 @@ using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Commands
 using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Commands.UpdateHotel;
 using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.DTOs;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Request;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Profiles
 {

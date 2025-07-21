@@ -1,4 +1,4 @@
-﻿namespace TravelAndAccommodationBookingPlatform.Core.Models
+﻿namespace TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Response
 {
     public class HotelPublicResponseDto
     {

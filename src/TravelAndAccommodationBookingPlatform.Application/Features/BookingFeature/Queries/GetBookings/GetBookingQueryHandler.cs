@@ -5,6 +5,7 @@ using TravelAndAccommodationBookingPlatform.Application.Features.Booking.DTOs;
 using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
 using TravelAndAccommodationBookingPlatform.Core.Services.Authentication;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Features.Booking.Queries.GetBookings

@@ -1,4 +1,4 @@
-﻿namespace TravelAndAccommodationBookingPlatform.Core.Models
+﻿namespace TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common
 {
     public record PaginationMetadata(int TotalItemCount, int CurrentPage, int PageSize)
     {

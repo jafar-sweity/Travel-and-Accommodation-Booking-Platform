@@ -1,4 +1,4 @@
-﻿namespace TravelAndAccommodationBookingPlatform.Core.Models
+﻿namespace TravelAndAccommodationBookingPlatform.Core.Models.Email
 {
     public record EmailRequest(
         IEnumerable<string> ToEmails,

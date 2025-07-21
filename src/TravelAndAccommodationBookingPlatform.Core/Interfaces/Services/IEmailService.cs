@@ -1,4 +1,4 @@
-﻿using TravelAndAccommodationBookingPlatform.Core.Models;
+﻿using TravelAndAccommodationBookingPlatform.Core.Models.Email;
 
 namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Services
 {

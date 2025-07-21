@@ -5,6 +5,7 @@ using TravelAndAccommodationBookingPlatform.Core.Constants.DomainMessages;
 using TravelAndAccommodationBookingPlatform.Core.Constants.Exceptions;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Features.Discounts.Queries.GetDiscounts
 {

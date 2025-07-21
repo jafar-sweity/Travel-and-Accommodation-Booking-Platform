@@ -7,7 +7,7 @@ using TravelAndAccommodationBookingPlatform.Core.Entities;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Services;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.UnitOfWork;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.Email;
 using TravelAndAccommodationBookingPlatform.Core.Services.Authentication;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Features.Booking.Commands.CreateBooking

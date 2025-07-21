@@ -3,7 +3,7 @@ using MailKit.Security;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
 using TravelAndAccommodationBookingPlatform.Core.Interfaces.Services;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.Email;
 
 namespace TravelAndAccommodationBookingPlatform.Infrastructure.Services
 {

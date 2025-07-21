@@ -2,7 +2,7 @@
 using TravelAndAccommodationBookingPlatform.Application.Features.Booking.DTOs;
 using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.DTOs;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Profiles
 {

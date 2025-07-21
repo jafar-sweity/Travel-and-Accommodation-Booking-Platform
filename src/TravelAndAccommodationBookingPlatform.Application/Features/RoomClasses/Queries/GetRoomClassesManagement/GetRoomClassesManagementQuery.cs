@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.DTOs;
 using TravelAndAccommodationBookingPlatform.Core.Enums;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.Queries.GetRoomClassesManagement
 {

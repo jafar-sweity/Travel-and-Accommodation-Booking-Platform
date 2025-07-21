@@ -3,7 +3,8 @@ using TravelAndAccommodationBookingPlatform.Application.Features.Rooms.Commands.
 using TravelAndAccommodationBookingPlatform.Application.Features.Rooms.Commands.UpdateRoom;
 using TravelAndAccommodationBookingPlatform.Application.Features.Rooms.DTOs;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Request;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Profiles
 {

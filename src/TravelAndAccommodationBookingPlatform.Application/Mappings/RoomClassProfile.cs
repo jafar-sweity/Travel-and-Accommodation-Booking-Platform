@@ -4,7 +4,7 @@ using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.Com
 using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.Commands.UpdateRoomClass;
 using TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.DTOs;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Profiles
 {

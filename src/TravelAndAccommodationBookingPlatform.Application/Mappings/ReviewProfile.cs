@@ -2,7 +2,7 @@
 using TravelAndAccommodationBookingPlatform.Application.Features.Reviews.Commands.UpdateReview;
 using TravelAndAccommodationBookingPlatform.Application.Features.Reviews.DTOs;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Profiles
 {

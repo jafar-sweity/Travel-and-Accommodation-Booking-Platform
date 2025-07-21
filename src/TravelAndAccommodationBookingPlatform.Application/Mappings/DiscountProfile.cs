@@ -2,7 +2,7 @@
 using TravelAndAccommodationBookingPlatform.Application.Features.Discounts.Commands.CreateDiscount;
 using TravelAndAccommodationBookingPlatform.Application.Features.Discounts.DTOs;
 using TravelAndAccommodationBookingPlatform.Core.Entities;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Profiles
 {

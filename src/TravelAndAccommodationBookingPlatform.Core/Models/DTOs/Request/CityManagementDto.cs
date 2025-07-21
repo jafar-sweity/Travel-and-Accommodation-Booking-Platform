@@ -1,4 +1,4 @@
-﻿namespace TravelAndAccommodationBookingPlatform.Core.Models
+﻿namespace TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Request
 {
     /// <summary>
     /// Represents the data model used to display city information in the admin panel.

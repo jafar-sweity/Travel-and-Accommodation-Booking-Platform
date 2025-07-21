@@ -1,5 +1,7 @@
 ﻿using TravelAndAccommodationBookingPlatform.Core.Entities;
-using TravelAndAccommodationBookingPlatform.Core.Models;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Common;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Request;
+using TravelAndAccommodationBookingPlatform.Core.Models.DTOs.Response;
 
 namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Repositories
 {
