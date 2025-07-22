@@ -1,31 +1,24 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# Use the official ASP.NET Core runtime image as the base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
+EXPOSE 8080
+EXPOSE 443
 
-COPY src/TravelAndAccommodationBookingPlatform.WebAPI/*.csproj ./src/TravelAndAccommodationBookingPlatform.WebAPI/
-COPY src/TravelAndAccommodationBookingPlatform.Application/*.csproj ./src/TravelAndAccommodationBookingPlatform.Application/
-COPY src/TravelAndAccommodationBookingPlatform.Core/*.csproj ./src/TravelAndAccommodationBookingPlatform.Core/
-COPY src/TravelAndAccommodationBookingPlatform.Infrastructure/*.csproj ./src/TravelAndAccommodationBookingPlatform.Infrastructure/
+# Use the SDK image for building the app
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
 
-RUN dotnet restore src/TravelAndAccommodationBookingPlatform.WebAPI/TravelAndAccommodationBookingPlatform.WebAPI.csproj
+# Copy csproj and restore
+COPY TravelAndAccommodationBookingPlatform.WebAPI/*.csproj ./TravelAndAccommodationBookingPlatform.WebAPI/
+RUN dotnet restore ./TravelAndAccommodationBookingPlatform.WebAPI/TravelAndAccommodationBookingPlatform.WebAPI.csproj
 
+# Copy everything else and build
 COPY . .
-WORKDIR /app/src/TravelAndAccommodationBookingPlatform.WebAPI
-RUN dotnet publish -c Release -o /app/publish 
+WORKDIR /src/TravelAndAccommodationBookingPlatform.WebAPI
+RUN dotnet publish -c Release -o /app/publish
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+# Final stage
+FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
-
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
-
-RUN adduser --disabled-password --gecos '' appuser && chown -R appuser /app
-USER appuser
-
-EXPOSE 8080
-ENV ASPNETCORE_URLS=http://+:8080
-
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8080/health || exit 1
-ENV ASPNETCORE_ENVIRONMENT=Docker
-
 ENTRYPOINT ["dotnet", "TravelAndAccommodationBookingPlatform.WebAPI.dll"]
