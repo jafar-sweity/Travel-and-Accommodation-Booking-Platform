@@ -45,6 +45,5 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Validators.Auth
         {
             return dateOfBirth <= DateTime.Today.AddYears(-18);
         }
-
     }
 }

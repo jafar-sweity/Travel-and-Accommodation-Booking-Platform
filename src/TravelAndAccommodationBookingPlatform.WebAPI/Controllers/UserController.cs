@@ -38,6 +38,5 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
             var hotels = await _mediator.Send(query);
             return Ok(hotels);
         }
-
     }
 }

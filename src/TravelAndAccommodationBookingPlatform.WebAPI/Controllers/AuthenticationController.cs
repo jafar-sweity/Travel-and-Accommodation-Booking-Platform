@@ -45,7 +45,5 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
             await _mediator.Send(registerCommand);
             return NoContent();
         }
-
-
     }
 }

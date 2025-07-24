@@ -94,5 +94,4 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
             return NoContent();
         }
     }
-
 }
