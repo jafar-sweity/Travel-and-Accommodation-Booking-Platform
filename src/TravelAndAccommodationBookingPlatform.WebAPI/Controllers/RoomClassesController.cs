@@ -52,8 +52,8 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
         public async Task<IActionResult> CreateRoomClass([FromBody] RoomClassCreationRequestDto createRoomClassRequestDto)
         {
             var command = _mapper.Map<CreateRoomClassCommand>(createRoomClassRequestDto);
-            await _mediator.Send(command);
-            return Created();
+            var createdRoomClassId = await _mediator.Send(command);
+            return Created(string.Empty, createdRoomClassId);
         }
 
         [HttpPost("{id:guid}/gallery")]

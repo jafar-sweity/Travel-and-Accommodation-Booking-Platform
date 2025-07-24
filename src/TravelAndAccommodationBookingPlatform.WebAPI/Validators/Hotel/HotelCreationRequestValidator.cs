@@ -30,11 +30,6 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Validators.Hotel
                 .Matches(@"^(https?:\/\/)?([\w\-]+(\.[\w\-]+)+)(\/[\w\-]*)*(\?.*)?$")
                 .WithMessage("Website must be a valid URL (e.g., https://example.com).");
 
-            RuleFor(x => x.Geolocation)
-                .NotEmpty().WithMessage("Geolocation is required.")
-                .Matches(@"^-?\d{1,3}\.\d+,\s?-?\d{1,3}\.\d+$")
-                .WithMessage("Geolocation must be in the format 'latitude, longitude' (e.g., 12.3456, -98.7654).");
-
             RuleFor(x => x.BriefDescription)
                 .NotEmpty().WithMessage("Brief description is required.")
                 .MaximumLength(250).WithMessage("Brief description must not exceed 250 characters.");

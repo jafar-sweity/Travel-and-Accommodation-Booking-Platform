@@ -6,6 +6,7 @@ using System.Text.Json;
 using TravelAndAccommodationBookingPlatform.Application.DTOs.HotelDtos;
 using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Commands.AddGalleryToHotel;
 using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Commands.AddHotelThumbnail;
+using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Commands.CreateHotel;
 using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Commands.DeleteHotel;
 using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.Commands.UpdateHotel;
 using TravelAndAccommodationBookingPlatform.Application.Features.Hotels.DTOs;
@@ -94,6 +95,19 @@ namespace TravelAndAccommodationBookingPlatform.WebAPI.Controllers
             var result = await _mediator.Send(query);
             Response.Headers["X-Pagination"] = JsonSerializer.Serialize(result.PaginationMetadata);
             return Ok(result.Items);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        public async Task<IActionResult> CreateHotel(HotelCreationRequestDto hotelCreationRequestDto)
+        {
+            var command = _mapper.Map<CreateHotelCommand>(hotelCreationRequestDto);
+            var result = await _mediator.Send(command);
+            return Created();
         }
 
         [HttpPost("{id:guid}/gallery")]
