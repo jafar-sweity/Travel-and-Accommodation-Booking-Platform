@@ -5,4 +5,3 @@
         public int TotalPageCount => TotalItemCount == 0 ? 1 : (int)Math.Ceiling((double)TotalItemCount / PageSize);
     }
 }
-

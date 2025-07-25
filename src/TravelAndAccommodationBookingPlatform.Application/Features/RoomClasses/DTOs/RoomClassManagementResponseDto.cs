@@ -1,4 +1,5 @@
 ﻿using TravelAndAccommodationBookingPlatform.Application.Features.Discounts.DTOs;
+using TravelAndAccommodationBookingPlatform.Core.Enums;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.DTOs
 {
@@ -13,5 +14,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses
         public DiscountResponseDto? ActiveDiscount { get; init; }
         public DateTime CreatedAt { get; init; }
         public DateTime? UpdatedAt { get; init; }
+        public RoomType TypeOfRoom { get; init; }
     }
 }

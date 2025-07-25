@@ -1,4 +1,5 @@
 ﻿using TravelAndAccommodationBookingPlatform.Application.Features.Discounts.DTOs;
+using TravelAndAccommodationBookingPlatform.Core.Enums;
 
 namespace TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses.DTOs
 {
@@ -12,5 +13,6 @@ namespace TravelAndAccommodationBookingPlatform.Application.Features.RoomClasses
         public int MaxAdultsCapacity { get; init; }
         public IEnumerable<string> Gallery { get; init; }
         public DiscountResponseDto? ActiveDiscount { get; init; }
+        public RoomType TypeOfRoom { get; init; }
     }
 }

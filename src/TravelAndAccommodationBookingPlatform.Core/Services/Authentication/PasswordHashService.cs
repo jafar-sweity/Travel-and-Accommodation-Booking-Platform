@@ -2,7 +2,6 @@
 
 namespace TravelAndAccommodationBookingPlatform.Core.Interfaces.Services.Authentication
 {
-
     public class PasswordHashService : IPasswordHashService
     {
         public string HashPassword(string password)

@@ -14,6 +14,7 @@ namespace TravelAndAccommodationBookingPlatform.Application.Profiles
         {
             CreateMap<CreateRoomClassCommand, RoomClass>();
             CreateMap<UpdateRoomClassCommand, RoomClass>();
+
             CreateMap<RoomClass, RoomClassManagementResponseDto>()
                 .ForMember(dst => dst.ActiveDiscount, options => options.MapFrom(src => src.Discounts.FirstOrDefault()))
                 .ForMember(dst => dst.RoomClassId, opt => opt.MapFrom(src => src.Id));
@@ -25,8 +26,10 @@ namespace TravelAndAccommodationBookingPlatform.Application.Profiles
 
             CreateMap<PaginatedResult<RoomClass>, PaginatedResult<RoomClassGuestResponseDto>>()
                 .ForMember(dst => dst.Items, options => options.MapFrom(src => src.Items));
+
             CreateMap<PaginatedResult<RoomClass>, PaginatedResult<RoomClassManagementResponseDto>>()
                 .ForMember(dst => dst.Items, options => options.MapFrom(src => src.Items));
+
             CreateMap<RoomClass, HotelFeaturedDealResponseDto>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Hotel.Name))
